@@ -24,7 +24,7 @@ export function serverEnv(): ServerEnv {
     supabaseSecretKey: process.env.SUPABASE_SECRET_KEY ?? process.env.SUPABASE_SERVICE_ROLE_KEY,
     cronSecret: process.env.CRON_SECRET || undefined,
     aiApiKey: process.env.AI_PROVIDER_API_KEY || undefined,
-    aiModel: process.env.AI_MODEL || "claude-sonnet-5-5",
+    aiModel: process.env.AI_MODEL || "claude-opus-5-5",
     advertisingEnabled: process.env.ADVERTISING_ENABLED === "true",
     adProvider: process.env.AD_PROVIDER || undefined,
     adPublisherId: process.env.AD_PUBLISHER_ID || undefined,

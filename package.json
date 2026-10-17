@@ -6,9 +6,19 @@
     "dev": "next dev",
     "build": "next build",
     "start": "next start",
-    "lint": "eslint"
+    "lint": "eslint",
+    "admin:grant": "tsx scripts/admin-role.ts grant",
+    "admin:revoke": "tsx scripts/admin-role.ts revoke",
+    "admin:list": "tsx scripts/admin-role.ts list",
+    "typecheck": "tsc --noEmit",
+    "test": "vitest run --project unit",
+    "test:integration": "vitest run --project integration",
+    "test:e2e": "playwright test",
+    "db:types": "supabase gen types typescript --local --schema public > lib/supabase/database.types.ts",
+    "db:reset": "supabase db reset"
   },
   "dependencies": {
+    "@anthropic-ai/sdk": "^0.135.0",
     "@supabase/ssr": "^0.12.7",
     "@supabase/supabase-js": "^2.118.0",
     "decimal.js": "^10.6.0",
