@@ -200,7 +200,7 @@ Vercel (recommended):
 
 1. Import the repository. Framework preset: Next.js. Node 20+.
 2. Set environment variables for Production (and Preview with a separate Supabase project): `NEXT_PUBLIC_APP_URL`, `NEXT_PUBLIC_SUPABASE_URL`, `NEXT_PUBLIC_SUPABASE_PUBLISHABLE_KEY`, `DATABASE_URL`, `CRON_SECRET` (optional: `AI_PROVIDER_API_KEY`).
-3. `vercel.json` schedules `GET /api/cron/publication-check` at 04:05 and 05:05 UTC (00:05 ET in both DST states). Vercel sends `Authorization: Bearer $CRON_SECRET`. The job promotes scheduled sets and logs gaps; gameplay never depends on it.
+3. `vercel.json` schedules `GET /api/cron/publication-check` once a day at 05:05 UTC (01:05 ET in summer, 00:05 ET in winter; Vercel's free plan allows one run per day). Vercel sends `Authorization: Bearer $CRON_SECRET`. The job promotes scheduled sets and logs gaps; gameplay never depends on it.
 4. Run `supabase db push` before deploying code that needs new migrations.
 5. Add the production callback URL in Supabase Auth.
 
