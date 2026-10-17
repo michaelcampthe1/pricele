@@ -36,7 +36,7 @@ A daily price-guessing game. Every day players get three real-world prices to es
 | Admin dashboard (questions, sources, sets, corrections, users, audit) | Implemented; E2E-tested |
 | Lint, typecheck, production build | Passing |
 | Deployment | **Not performed** — instructions below |
-| Real question content | **None** — only fictional, clearly labeled sample questions are included |
+| Real question content | 15 starter questions on familiar items, each with a picture; unverified until an editor checks them |
 
 ---
 

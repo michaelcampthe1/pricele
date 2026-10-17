@@ -26,6 +26,7 @@ export function QuestionForm({
   draft?: QuestionDraft;
 }) {
   const [amount, setAmount] = useState(question?.answer?.amount ?? "");
+  const [image, setImage] = useState(question?.imageUrl ?? "");
   const parsed = amount ? parseUsdInput(amount) : null;
   const d = draft ?? {};
   return (
@@ -36,6 +37,36 @@ export function QuestionForm({
       render={(s) => (
         <div className="space-y-5">
           <fieldset className="space-y-4">
+            <legend className="mb-2 font-semibold">Picture of the item (required)</legend>
+            <div className="grid gap-4 sm:grid-cols-[1fr_12rem]">
+              <div className="space-y-4">
+                <Field
+                  id="imageUrl"
+                  label="Image link"
+                  hint="An https:// link to a photo you have the right to use, or a bundled picture like /items/phone.svg."
+                  error={s.fieldErrors?.imageUrl}
+                >
+                  <TextInput id="imageUrl" value={image} onChange={(e) => setImage(e.target.value)} error={s.fieldErrors?.imageUrl} hint />
+                </Field>
+                <Field id="imageAlt" label="Describe the picture" hint="Read aloud by screen readers. Don't give away the price." error={s.fieldErrors?.imageAlt}>
+                  <TextInput id="imageAlt" maxLength={200} defaultValue={question?.imageAlt ?? ""} error={s.fieldErrors?.imageAlt} hint />
+                </Field>
+                <Field id="imageCredit" label="Photo credit" optional error={s.fieldErrors?.imageCredit}>
+                  <TextInput id="imageCredit" maxLength={200} defaultValue={question?.imageCredit ?? ""} error={s.fieldErrors?.imageCredit} />
+                </Field>
+              </div>
+              <div className="flex aspect-[4/3] items-center justify-center overflow-hidden rounded-[10px] border border-line bg-[#eceee8] text-center text-xs text-muted">
+                {/^(https:\/\/\S+|\/items\/\S+)$/.test(image) ? (
+                  // eslint-disable-next-line @next/next/no-img-element
+                  <img src={image} alt="" className="h-full w-full object-contain" />
+                ) : (
+                  <span className="p-3">Picture preview appears here</span>
+                )}
+              </div>
+            </div>
+          </fieldset>
+
+          <fieldset className="space-y-4">
             <legend className="mb-2 font-semibold">Player-facing question</legend>
             <Field id="prompt" label="Question" hint="Ask for one unambiguous USD amount." error={s.fieldErrors?.prompt}>
               <TextArea id="prompt" rows={2} maxLength={300} defaultValue={question?.prompt ?? d.prompt ?? ""} error={s.fieldErrors?.prompt} />
@@ -44,7 +75,12 @@ export function QuestionForm({
               <TextArea id="context" rows={2} maxLength={600} defaultValue={question?.context ?? d.context ?? ""} error={s.fieldErrors?.context} />
             </Field>
             <div className="grid gap-4 sm:grid-cols-2">
-              <Field id="difficulty" label="Difficulty" error={s.fieldErrors?.difficulty}>
+              <Field
+                id="difficulty"
+                label="Difficulty"
+                hint="Easy: things most people buy (trash bags, a new iPhone). Medium: familiar but pricier or rarer buys (a car, a stand mixer). Hard: famous one-offs (record auctions, landmark buildings)."
+                error={s.fieldErrors?.difficulty}
+              >
                 <Select id="difficulty" defaultValue={question?.difficulty ?? d.difficulty ?? ""}>
                   <option value="" disabled>Choose…</option>
                   <option value="easy">Easy</option>
@@ -59,17 +95,6 @@ export function QuestionForm({
                     <option key={c.id} value={c.id}>{c.name}</option>
                   ))}
                 </Select>
-              </Field>
-            </div>
-            <div className="grid gap-4 sm:grid-cols-3">
-              <Field id="imageUrl" label="Image URL" optional hint="https only; must be licensed for use." error={s.fieldErrors?.imageUrl}>
-                <TextInput id="imageUrl" type="url" defaultValue={question?.imageUrl ?? ""} error={s.fieldErrors?.imageUrl} hint />
-              </Field>
-              <Field id="imageAlt" label="Image alt text" optional error={s.fieldErrors?.imageAlt}>
-                <TextInput id="imageAlt" maxLength={200} defaultValue={question?.imageAlt ?? ""} error={s.fieldErrors?.imageAlt} />
-              </Field>
-              <Field id="imageCredit" label="Image credit" optional error={s.fieldErrors?.imageCredit}>
-                <TextInput id="imageCredit" maxLength={200} defaultValue={question?.imageCredit ?? ""} error={s.fieldErrors?.imageCredit} />
               </Field>
             </div>
           </fieldset>

@@ -71,22 +71,37 @@ export async function createTestDb(prefix = "pricele_it"): Promise<TestDb> {
   const ownerUrl = withDatabase(ADMIN_URL, name);
   await applySchema(ownerUrl);
   const appUrl = withUser(ownerUrl, "pricele_app", APP_PASSWORD);
-  const owner = postgres(ownerUrl, { max: 4, onnotice: () => {} });
+  const connectOwner = () => postgres(ownerUrl, { max: 4, onnotice: () => {} });
+  let owner = connectOwner();
 
   return {
     name,
     ownerUrl,
     appUrl,
-    owner,
+    get owner() {
+      return owner;
+    },
     async setNow(ts) {
-      if (ts) await owner.unsafe(`alter database ${name} set pricele.test_now = '${new Date(ts).toISOString()}'`);
-      else await owner.unsafe(`alter database ${name} reset pricele.test_now`);
-      // Existing sessions keep the old value; recycle connections.
-      await owner.unsafe(
-        `select pg_terminate_backend(pid) from pg_stat_activity where datname = '${name}' and pid <> pg_backend_pid()`,
-      );
-      const { resetSqlForTests } = await import("@/lib/db");
-      await resetSqlForTests();
+      await owner.end({ timeout: 1 });
+      const { resetSqlForTests: resetApp } = await import("@/lib/db");
+      await resetApp();
+      // Change the setting from a connection to another database, then end every session on the
+      // test database (including the owner pool) so all reconnect with the new clock.
+      const ctl = postgres(ADMIN_URL, { max: 1, onnotice: () => {} });
+      try {
+        if (ts) await ctl.unsafe(`alter database ${name} set pricele.test_now = '${new Date(ts).toISOString()}'`);
+        else await ctl.unsafe(`alter database ${name} reset pricele.test_now`);
+        await ctl.unsafe(`select pg_terminate_backend(pid) from pg_stat_activity where datname = '${name}'`);
+        // Wait until terminated sessions are fully gone before anyone reconnects.
+        for (let i = 0; i < 50; i++) {
+          const [{ n }] = await ctl.unsafe(`select count(*)::int as n from pg_stat_activity where datname = '${name}'`);
+          if (n === 0) break;
+          await new Promise((r) => setTimeout(r, 20));
+        }
+      } finally {
+        await ctl.end();
+      }
+      owner = connectOwner();
     },
     async drop() {
       await owner.end({ timeout: 1 });

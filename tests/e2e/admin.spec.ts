@@ -42,6 +42,8 @@ test("admin creates, sources, verifies and approves a question; publishes a set;
   // Create a draft question
   await page.goto("/admin/questions/new");
   await page.getByLabel("Question").fill(`E2E sample: what does the fictional Example Kettle ${stamp} cost at Example Mart?`);
+  await page.getByLabel("Image link").fill("/items/phone.svg");
+  await page.getByLabel("Describe the picture").fill("Illustration used by the end-to-end test");
   await page.getByLabel("Difficulty").selectOption("easy");
   await page.getByLabel("Category").selectOption({ label: "Everyday products" });
   await page.getByLabel("Target amount (USD)").fill("49.99");
@@ -93,6 +95,8 @@ test("admin creates, sources, verifies and approves a question; publishes a set;
       select pricele.admin_save_question(${adminId}::uuid, null, ${db().json({
         prompt: `E2E sample ${difficulty} ${stamp}: what was the fictional Example deal worth?`,
         context: null,
+        imageUrl: "/items/sedan.svg",
+        imageAlt: "Illustration used by the end-to-end test",
         difficulty,
         categoryId: (await db()`select id from public.categories where slug = 'business-and-markets'`)[0].id,
         answerAmount: amount,

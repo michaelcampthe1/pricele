@@ -100,12 +100,19 @@
   position: absolute;
   left: 14px;
   top: 50%;
+  margin-top: -5px;
   width: 10px;
   height: 10px;
-  margin-top: -5px;
   border-radius: 999px;
   background: var(--paper);
   box-shadow: inset 0 0 0 1px var(--line-strong);
+}
+
+/* On question cards with a picture, the punched hole sits beside the text, below the photo. */
+.tag-photo::before {
+  top: auto;
+  bottom: 30px;
+  margin-top: 0;
 }
 
 /* Score reveal: one deliberate moment of motion. */

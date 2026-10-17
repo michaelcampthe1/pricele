@@ -34,8 +34,8 @@ const baseQuestion = async (difficulty: "easy" | "medium" | "hard" = "easy") => 
   context: "Use the manufacturer's suggested retail price at launch.",
   difficulty,
   categoryId: await categoryId(db),
-  imageUrl: null,
-  imageAlt: null,
+  imageUrl: "/items/phone.svg",
+  imageAlt: "Illustration used by automated tests",
   imageCredit: null,
   answerAmount: "499.00",
   answerDefinition: "Manufacturer's suggested retail price at launch",
@@ -130,6 +130,28 @@ describe("question workflow", () => {
     const after = await admin.getQuestion(adminId, saved.id);
     expect(after?.status).toBe("draft");
     expect(after?.answer?.verificationStatus).toBe("unverified");
+  });
+
+  it("requires a picture of the item before verification", async () => {
+    const saved = await admin.saveQuestion(adminId, null, { ...(await baseQuestion()), imageUrl: null, imageAlt: null });
+    if (!saved.ok) throw new Error("save failed");
+    await admin.addSource(adminId, saved.id, {
+      title: "Launch press release",
+      publisher: "Widget Co.",
+      url: "https://widget.example/press",
+      publishedAt: null,
+      referenceDate: null,
+      supportingExcerpt: "Widget will be available for $499.",
+      verificationNotes: null,
+    });
+    const v = await admin.verifyAnswer(adminId, saved.id, true);
+    expect(v.ok).toBe(false);
+    if (!v.ok) expect(v.problems).toEqual(["Add a picture of the item"]);
+    // Only https links or pictures bundled under /items/ are accepted.
+    for (const bad of ["http://example.com/a.jpg", "/etc/passwd", "javascript:alert(1)"]) {
+      const r = await admin.saveQuestion(adminId, saved.id, { ...(await baseQuestion()), imageUrl: bad });
+      expect(r.ok, bad).toBe(false);
+    }
   });
 
   it("rejects invalid answer amounts", async () => {

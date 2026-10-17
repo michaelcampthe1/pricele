@@ -63,8 +63,11 @@ const questionSchema = z.object({
   context: z.string().max(600).nullable(),
   difficulty: z.enum(["easy", "medium", "hard"], { message: "Choose a difficulty." }),
   categoryId: z.uuid("Choose a category."),
-  imageUrl: z.string().regex(/^https:\/\/\S+$/, "Use an https:// URL.").max(500).nullable(),
-  imageAlt: z.string().max(200).nullable(),
+  imageUrl: z
+    .string({ message: "Add a picture of the item." })
+    .max(500)
+    .regex(/^(https:\/\/\S+|\/items\/[a-z0-9-]+\.(svg|png|jpg|jpeg|webp))$/, "Use an https:// image link."),
+  imageAlt: z.string({ message: "Describe the picture for screen readers." }).min(5, "Describe the picture for screen readers.").max(200),
   imageCredit: z.string().max(200).nullable(),
   answerDefinition: z.string().min(5, "Say exactly what the amount measures.").max(300),
   referenceDate: z.string().refine((v) => isGameDateString(v), "Use a valid date.").nullable(),
@@ -81,8 +84,8 @@ export async function saveQuestionAction(_prev: AdminFormState, fd: FormData): P
     context: optional(fd, "context"),
     difficulty: str(fd, "difficulty"),
     categoryId: str(fd, "categoryId"),
-    imageUrl: optional(fd, "imageUrl"),
-    imageAlt: optional(fd, "imageAlt"),
+    imageUrl: optional(fd, "imageUrl") ?? undefined,
+    imageAlt: optional(fd, "imageAlt") ?? undefined,
     imageCredit: optional(fd, "imageCredit"),
     answerDefinition: str(fd, "answerDefinition"),
     referenceDate: optional(fd, "referenceDate"),
@@ -92,7 +95,6 @@ export async function saveQuestionAction(_prev: AdminFormState, fd: FormData): P
   const amount = parseUsdInput(str(fd, "answerAmount"));
   const errs = parsed.success ? {} : fieldErrors(parsed.error);
   if (!amount.ok) errs.answerAmount = amount.error;
-  if (parsed.success && parsed.data.imageUrl && !parsed.data.imageAlt) errs.imageAlt = "Describe the image for screen readers.";
   if (!parsed.success || Object.keys(errs).length) return { fieldErrors: errs };
 
   const r = await admin.saveQuestion(me.id, id, { ...parsed.data, answerAmount: amount.ok ? amount.value : null });
