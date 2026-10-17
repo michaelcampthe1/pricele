@@ -15,6 +15,7 @@ const nextConfig: NextConfig = {
   // Pricele's pages are personalized and date-dependent; we render them per request and
   // never cache answer-bearing or personalized responses. See README "Caching".
   cacheComponents: false,
+  distDir: process.env.NEXT_DIST_DIR || ".next",
   poweredByHeader: false,
   serverExternalPackages: ["postgres"],
   async headers() {

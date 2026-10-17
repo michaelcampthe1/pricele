@@ -168,7 +168,11 @@ export default async function AdminQuestionPage({
                 ))}
               </ul>
             )}
-            <SourceForm questionId={q.id} />
+            {q.status === "published" ? (
+              <p className="text-sm text-muted">Sources of published questions are locked. A correction records its own supporting source.</p>
+            ) : (
+              <SourceForm questionId={q.id} />
+            )}
           </Panel>
         </div>
 

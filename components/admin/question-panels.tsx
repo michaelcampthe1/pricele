@@ -13,31 +13,31 @@ export function SourceForm({ questionId }: { questionId: string }) {
       hidden={{ questionId }}
       render={(s) => (
         <div className="grid gap-4 sm:grid-cols-2">
-          <Field id="title" label="Title" error={s.fieldErrors?.title}>
-            <TextInput id="title" maxLength={300} error={s.fieldErrors?.title} />
+          <Field id="src-title" label="Title" error={s.fieldErrors?.title}>
+            <TextInput id="src-title" name="title" maxLength={300} error={s.fieldErrors?.title} />
           </Field>
-          <Field id="publisher" label="Publisher or organization" error={s.fieldErrors?.publisher}>
-            <TextInput id="publisher" maxLength={160} error={s.fieldErrors?.publisher} />
+          <Field id="src-publisher" label="Publisher or organization" error={s.fieldErrors?.publisher}>
+            <TextInput id="src-publisher" name="publisher" maxLength={160} error={s.fieldErrors?.publisher} />
           </Field>
           <div className="sm:col-span-2">
-            <Field id="url" label="URL" error={s.fieldErrors?.url}>
-              <TextInput id="url" type="url" error={s.fieldErrors?.url} />
+            <Field id="src-url" label="URL" error={s.fieldErrors?.url}>
+              <TextInput id="src-url" name="url" type="url" error={s.fieldErrors?.url} />
             </Field>
           </div>
-          <Field id="publishedAt" label="Published" optional error={s.fieldErrors?.publishedAt}>
-            <TextInput id="publishedAt" type="date" error={s.fieldErrors?.publishedAt} />
+          <Field id="src-publishedAt" label="Published" optional error={s.fieldErrors?.publishedAt}>
+            <TextInput id="src-publishedAt" name="publishedAt" type="date" error={s.fieldErrors?.publishedAt} />
           </Field>
-          <Field id="referenceDate" label="Reference date in source" optional error={s.fieldErrors?.referenceDate}>
-            <TextInput id="referenceDate" type="date" error={s.fieldErrors?.referenceDate} />
+          <Field id="src-referenceDate" label="Reference date in source" optional error={s.fieldErrors?.referenceDate}>
+            <TextInput id="src-referenceDate" name="referenceDate" type="date" error={s.fieldErrors?.referenceDate} />
           </Field>
           <div className="sm:col-span-2">
-            <Field id="supportingExcerpt" label="Supporting excerpt" optional hint="Short quote showing the exact amount." error={s.fieldErrors?.supportingExcerpt}>
-              <TextArea id="supportingExcerpt" rows={2} maxLength={1200} error={s.fieldErrors?.supportingExcerpt} />
+            <Field id="src-supportingExcerpt" label="Supporting excerpt" optional hint="Short quote showing the exact amount." error={s.fieldErrors?.supportingExcerpt}>
+              <TextArea id="src-supportingExcerpt" name="supportingExcerpt" rows={2} maxLength={1200} error={s.fieldErrors?.supportingExcerpt} />
             </Field>
           </div>
           <div className="sm:col-span-2">
-            <Field id="verificationNotes" label="Verification notes" optional error={s.fieldErrors?.verificationNotes}>
-              <TextArea id="verificationNotes" rows={2} maxLength={1200} error={s.fieldErrors?.verificationNotes} />
+            <Field id="src-verificationNotes" label="Verification notes" optional error={s.fieldErrors?.verificationNotes}>
+              <TextArea id="src-verificationNotes" name="verificationNotes" rows={2} maxLength={1200} error={s.fieldErrors?.verificationNotes} />
             </Field>
           </div>
         </div>

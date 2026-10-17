@@ -306,7 +306,7 @@ begin
              'reason', 'Similar wording') as x
       from public.questions q
      where q.id is distinct from p_question_id
-       and extensions.similarity(q.normalized_prompt, v_norm) >= 0.45
+       and extensions.similarity(q.normalized_prompt, v_norm) >= 0.6
     union all
     select jsonb_build_object('id', q.id, 'prompt', q.prompt, 'status', q.status, 'similarity', 1,
              'reason', 'Shares a source URL')

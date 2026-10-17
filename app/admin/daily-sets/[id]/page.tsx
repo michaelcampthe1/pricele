@@ -32,10 +32,15 @@ export default async function DailySetPage({ params }: { params: Promise<{ id: s
         <StatusBadge status={set.status} />
         {set.version > 0 && <span className="text-sm text-muted">Version {set.version}</span>}
       </div>
-      {set.publishedAt && (
+      {set.status === "scheduled" && (
+        <Alert tone="success" role="status" title="Published and scheduled">
+          It goes live at midnight ET on {formatGameDate(set.gameDate, "short")}. Published {set.publishedAt && formatTimestamp(set.publishedAt)} by{" "}
+          {set.publishedBy ?? "unknown"}.
+        </Alert>
+      )}
+      {set.status === "published" && set.publishedAt && (
         <p className="text-sm text-muted">
-          Published {formatTimestamp(set.publishedAt)} by {set.publishedBy ?? "unknown"}.{" "}
-          {set.status === "scheduled" && "It goes live at midnight ET on its date."}
+          Published {formatTimestamp(set.publishedAt)} by {set.publishedBy ?? "unknown"}.
         </p>
       )}
 
