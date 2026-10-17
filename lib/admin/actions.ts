@@ -267,7 +267,7 @@ export async function publishSetAction(_prev: FormState, formData: FormData): Pr
   revalidatePath("/", "layout");
   if (!res.ok) return fromRpc(res);
   await log("info", "admin.set_published", { setId, status: res.status });
-  return { ok: true, message: res.status === "published" ? "Published — it's live now." : "Scheduled. It goes live at midnight Eastern Time on its date." };
+  redirect(`/admin/daily-sets/${setId}?notice=${res.status}`);
 }
 
 export async function unscheduleSetAction(_prev: FormState, formData: FormData): Promise<FormState> {
@@ -276,7 +276,8 @@ export async function unscheduleSetAction(_prev: FormState, formData: FormData):
   const setId = uuidSchema.parse(formData.get("set_id"));
   const res = await rpc("admin_unschedule_daily_set", { p_admin_id: admin.id, p_daily_set_id: setId });
   revalidatePath("/admin", "layout");
-  return res.ok ? { ok: true, message: "Returned to draft." } : fromRpc(res);
+  if (!res.ok) return fromRpc(res);
+  redirect(`/admin/daily-sets/${setId}?notice=unscheduled`);
 }
 
 // --- Users & feedback ------------------------------------------------------------------------

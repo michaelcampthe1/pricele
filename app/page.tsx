@@ -10,14 +10,17 @@ import { DIFFICULTY_LABEL } from "@/lib/game/types";
 import { ButtonLink } from "@/components/ui/button";
 import { Card } from "@/components/ui/card";
 import { EmptyState } from "@/components/ui/empty-state";
+import { Alert } from "@/components/ui/alert";
 import { DifficultyBadge } from "@/components/ui/difficulty-badge";
 import { LeaderboardTable } from "@/components/leaderboard/leaderboard-table";
 import { AdSlot } from "@/components/shared/ad-slot";
 import { ClaimCard } from "@/components/profile/claim-card";
+import { ClaimedNotice } from "@/components/profile/claimed-notice";
 import { getClaimableGuestProgress } from "@/lib/auth/claimable";
 import { cn } from "@/lib/cn";
 
-export default async function HomePage() {
+export default async function HomePage({ searchParams }: { searchParams: Promise<Record<string, string | undefined>> }) {
+  const sp = await searchParams;
   const [{ gameDate, set, results, summary }, viewer] = await Promise.all([loadToday(), getViewer()]);
   const [stats, board, claimable] = await Promise.all([
     viewer ? getPlayerStats(viewer.id) : null,
@@ -29,6 +32,16 @@ export default async function HomePage() {
 
   return (
     <div className="mx-auto max-w-6xl px-4 sm:px-6">
+      {sp.claimed !== undefined ? (
+        <div className="pt-6">
+          <ClaimedNotice claimed={sp.claimed} skipped={sp.skipped} />
+        </div>
+      ) : null}
+      {sp.account === "deleted" ? (
+        <div className="pt-6">
+          <Alert tone="info" role="status">Your account and its data were deleted.</Alert>
+        </div>
+      ) : null}
       {claimable ? (
         <div className="pt-6">
           <ClaimCard attempts={claimable.attempts} days={claimable.days} />

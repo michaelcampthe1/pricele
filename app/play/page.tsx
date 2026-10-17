@@ -4,6 +4,10 @@ import { formatGameDate } from "@/lib/dates";
 import { loadToday } from "@/lib/game/today";
 import { GameClient } from "@/components/game/game-client";
 import { GameUnavailable, SampleBanner } from "@/components/game/unavailable";
+import { ClaimCard } from "@/components/profile/claim-card";
+import { ClaimedNotice } from "@/components/profile/claimed-notice";
+import { getAuthUser } from "@/lib/auth/session";
+import { getClaimableGuestProgress } from "@/lib/auth/claimable";
 
 export const metadata: Metadata = {
   title: "Today's Game",
@@ -11,9 +15,11 @@ export const metadata: Metadata = {
   alternates: { canonical: "/play" },
 };
 
-export default async function PlayPage() {
+export default async function PlayPage({ searchParams }: { searchParams: Promise<Record<string, string | undefined>> }) {
+  const sp = await searchParams;
   const { gameDate, set, results, summary } = await loadToday();
   if (set && summary?.complete) redirect("/results");
+  const claimable = (await getAuthUser()) ? await getClaimableGuestProgress() : null;
 
   return (
     <div className="mx-auto max-w-2xl px-4 py-8 sm:px-6 sm:py-12">
@@ -23,7 +29,9 @@ export default async function PlayPage() {
       </header>
       {set ? (
         <div className="space-y-4">
+          <ClaimedNotice claimed={sp.claimed} skipped={sp.skipped} />
           {set.isSample ? <SampleBanner /> : null}
+          {claimable ? <ClaimCard attempts={claimable.attempts} days={claimable.days} /> : null}
           <GameClient set={set} initialResults={[...results.values()]} />
         </div>
       ) : (

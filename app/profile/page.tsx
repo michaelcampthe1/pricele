@@ -10,6 +10,7 @@ import { Card } from "@/components/ui/card";
 import { Alert } from "@/components/ui/alert";
 import { StatsPanel } from "@/components/profile/stats";
 import { ClaimCard } from "@/components/profile/claim-card";
+import { ClaimedNotice } from "@/components/profile/claimed-notice";
 import { DeleteAccountForm, ProfileForm } from "@/components/profile/settings-forms";
 
 export const metadata: Metadata = { title: "Your profile", robots: { index: false } };
@@ -25,7 +26,7 @@ export default async function ProfilePage({ searchParams }: { searchParams: Prom
   return (
     <div className="mx-auto max-w-4xl space-y-8 px-4 py-8 sm:px-6 sm:py-12">
       {sp.password === "updated" ? <Alert tone="success">Your password was updated.</Alert> : null}
-      {viewer.suspended ? <Alert tone="warning" title="Account suspended">You can't submit official guesses while your account is suspended.</Alert> : null}
+      {viewer.suspended ? <Alert tone="warning" title="Account suspended">You can&apos;t submit official guesses while your account is suspended.</Alert> : null}
       <header className="flex items-center gap-4">
         <Avatar name={viewer.username} url={viewer.avatarUrl} size={56} />
         <div className="min-w-0">
@@ -41,6 +42,7 @@ export default async function ProfilePage({ searchParams }: { searchParams: Prom
         </div>
       </header>
 
+      <ClaimedNotice claimed={sp.claimed} skipped={sp.skipped} />
       {claimable ? <ClaimCard attempts={claimable.attempts} days={claimable.days} /> : null}
       {!viewer.usernameConfirmed ? (
         <Alert tone="info" title="Pick your username">

@@ -1,7 +1,6 @@
 "use server";
 
 import { z } from "zod";
-import { revalidatePath } from "next/cache";
 import { createServiceClient } from "@/lib/supabase/admin";
 import { parseUsdInput, PARSE_ERROR_MESSAGES } from "@/lib/money";
 import { fail, type ActionResult } from "@/lib/errors";
@@ -44,7 +43,8 @@ async function toResult(
 ): Promise<QuestionResult> {
   const reveal = (await getReveals([attempt.question_id])).get(attempt.question_id);
   if (!reveal) throw new Error("reveal_missing");
-  const { answer: _answer, ...details } = reveal;
+  // The answer shown is the snapshot the attempt was scored against, not the live key.
+  const details = { answerDefinition: reveal.answerDefinition, explanation: reveal.explanation, referenceLabel: reveal.referenceLabel, sources: reveal.sources, correctionNote: reveal.correctionNote };
   return {
     questionId: attempt.question_id,
     position,
@@ -94,7 +94,8 @@ export async function submitOfficialGuess(input: { questionId: string; guess: st
     if (!res.already_submitted) {
       await log("info", "official_guess.submitted", { player: player.kind, score: res.attempt.score });
     }
-    if (res.set_complete) revalidatePath("/", "layout");
+    // No revalidatePath here: re-rendering /play on the final answer would redirect to
+    // /results before the player sees the reveal. All game pages render dynamically.
     return { ok: true, result, alreadySubmitted: res.already_submitted, setComplete: res.set_complete };
   } catch (err) {
     await log("error", "official_guess.failed", { error: err });

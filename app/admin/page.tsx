@@ -23,7 +23,7 @@ export default async function AdminOverview() {
       </div>
 
       {!todaySet || !["published", "scheduled"].includes(todaySet.status) ? (
-        <Alert tone="error" title="No game is live today">Players see an "unavailable" message. Create and publish a set for {formatGameDate(o.today, "medium")}.</Alert>
+        <Alert tone="error" title="No game is live today">Players see an &ldquo;unavailable&rdquo; message. Create and publish a set for {formatGameDate(o.today, "medium")}.</Alert>
       ) : null}
       {!tomorrow.set || tomorrow.set.status === "draft" ? (
         <Alert tone="warning" title="Tomorrow isn't ready">No published set for {formatGameDate(tomorrow.date, "medium")} yet.</Alert>

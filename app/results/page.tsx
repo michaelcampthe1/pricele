@@ -19,11 +19,13 @@ import { DifficultyBadge } from "@/components/ui/difficulty-badge";
 import { ShareButton } from "@/components/game/share-button";
 import { GameUnavailable, SampleBanner } from "@/components/game/unavailable";
 import { ClaimCard } from "@/components/profile/claim-card";
+import { ClaimedNotice } from "@/components/profile/claimed-notice";
 import { AdSlot } from "@/components/shared/ad-slot";
 
 export const metadata: Metadata = { title: "Your results", robots: { index: false } };
 
-export default async function ResultsPage() {
+export default async function ResultsPage({ searchParams }: { searchParams: Promise<Record<string, string | undefined>> }) {
+  const sp = await searchParams;
   const { gameDate, set, results, summary } = await loadToday();
   if (!set) {
     return (
@@ -32,9 +34,21 @@ export default async function ResultsPage() {
       </div>
     );
   }
-  if (!summary!.complete) redirect("/play");
-
   const viewer = await getViewer();
+  if (!summary!.complete) {
+    // A player who just signed up still has today's game on their guest session: offer to
+    // save it rather than sending them back to an empty game.
+    const pending = viewer ? await getClaimableGuestProgress() : null;
+    if (!pending) redirect("/play");
+    return (
+      <div className="mx-auto max-w-2xl space-y-4 px-4 py-12 sm:px-6">
+        <h1 className="text-2xl font-semibold">Welcome, {viewer!.username}</h1>
+        <p className="text-muted">Save the games you played as a guest on this device to your new account.</p>
+        <ClaimCard attempts={pending.attempts} days={pending.days} />
+      </div>
+    );
+  }
+
   const [rank, stats, claimable] = await Promise.all([
     viewer ? getLeaderboard("daily", { date: gameDate, username: viewer.username, limit: 1 }) : null,
     viewer ? getPlayerStats(viewer.id) : null,
@@ -61,6 +75,7 @@ export default async function ResultsPage() {
 
   return (
     <div className="mx-auto max-w-2xl space-y-6 px-4 py-8 sm:px-6 sm:py-12">
+      <ClaimedNotice claimed={sp.claimed} skipped={sp.skipped} />
       {set.isSample ? <SampleBanner /> : null}
       {claimable ? <ClaimCard attempts={claimable.attempts} days={claimable.days} /> : null}
 

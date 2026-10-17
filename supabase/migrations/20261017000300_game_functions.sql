@@ -37,7 +37,9 @@ immutable
 parallel safe
 set search_path = ''
 as $$
-  select round(abs(p_guess - p_answer) / p_answer * 100, 6)
+  -- Explicit dividend scale: numeric division otherwise keeps only ~16 significant digits,
+  -- which loses precision for very large guess/answer ratios.
+  select round(abs(p_guess - p_answer)::numeric(40, 20) * 100 / p_answer, 6)
 $$;
 
 create or replace function private.scoring_version()

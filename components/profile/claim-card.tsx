@@ -1,7 +1,7 @@
 "use client";
 
 import { useState, useTransition } from "react";
-import { useRouter } from "next/navigation";
+import { usePathname, useRouter } from "next/navigation";
 import { Save } from "lucide-react";
 import { Button } from "@/components/ui/button";
 import { Alert } from "@/components/ui/alert";
@@ -9,8 +9,9 @@ import { claimGuestProgress } from "@/lib/auth/claim";
 
 export function ClaimCard({ attempts, days }: { attempts: number; days: number }) {
   const router = useRouter();
+  const pathname = usePathname();
   const [pending, start] = useTransition();
-  const [message, setMessage] = useState<{ tone: "success" | "error" | "info"; text: string } | null>(null);
+  const [message, setMessage] = useState<{ tone: "error"; text: string } | null>(null);
 
   function claim() {
     start(async () => {
@@ -19,15 +20,8 @@ export function ClaimCard({ attempts, days }: { attempts: number; days: number }
         setMessage({ tone: "error", text: res.message });
         return;
       }
-      setMessage(
-        res.claimedSets > 0
-          ? {
-              tone: "success",
-              text: `Saved ${res.claimedSets} ${res.claimedSets === 1 ? "day" : "days"} of guest progress to your account.${res.skippedSets ? ` ${res.skippedSets} skipped because you'd already played those days on this account.` : ""}`,
-            }
-          : { tone: "info", text: "Nothing new to save — you'd already played those days on this account, so your account results stand." },
-      );
-      router.refresh();
+      // Navigate with the outcome so the confirmation survives the page re-render.
+      router.replace(`${pathname}?claimed=${res.claimedSets}&skipped=${res.skippedSets}`);
     });
   }
 

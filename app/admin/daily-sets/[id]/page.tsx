@@ -27,8 +27,15 @@ type Member = {
   } | null;
 };
 
-export default async function DailySetPage({ params }: { params: Promise<{ id: string }> }) {
+const NOTICES: Record<string, string> = {
+  published: "Published — it's live now.",
+  scheduled: "Scheduled. It goes live at midnight Eastern Time on its date.",
+  unscheduled: "Returned to draft.",
+};
+
+export default async function DailySetPage({ params, searchParams }: { params: Promise<{ id: string }>; searchParams: Promise<Record<string, string | undefined>> }) {
   const { id } = await params;
+  const notice = NOTICES[(await searchParams).notice ?? ""];
   if (!uuidSchema.safeParse(id).success) notFound();
   const data = await getDailySet(id);
   if (!data) notFound();
@@ -39,6 +46,7 @@ export default async function DailySetPage({ params }: { params: Promise<{ id: s
 
   return (
     <div className="space-y-6">
+      {notice ? <Alert tone="success" role="status">{notice}</Alert> : null}
       <header className="space-y-2">
         <Link href="/admin/daily-sets" className="text-sm text-muted hover:underline">← Daily sets</Link>
         <h1 className="text-2xl font-semibold">{formatGameDate(set.game_date)}</h1>

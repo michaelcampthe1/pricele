@@ -129,7 +129,9 @@ describe("daily set publication", () => {
   });
 
   it("refuses to publish for a past date", async () => {
-    const { data: set } = await service.from("daily_sets").insert({ game_date: "2001-01-01" }).select("id").single();
+    const past = `2001-${String(1 + Math.floor(Math.random() * 12)).padStart(2, "0")}-${String(1 + Math.floor(Math.random() * 28)).padStart(2, "0")}`;
+    await service.from("daily_sets").delete().eq("game_date", past).eq("status", "draft");
+    const { data: set } = await service.from("daily_sets").insert({ game_date: past }).select("id").single();
     const issues = await rpc<string[]>("validate_daily_set", { p_daily_set_id: set!.id });
     expect(issues).toContain("date_in_past");
   });
