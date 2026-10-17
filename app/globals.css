@@ -1,26 +1,150 @@
 @import "tailwindcss";
 
+/*
+ * Pricele design tokens. Adjust the brand globally here.
+ * Palette: warm paper white, green-tinted charcoal ink, one restrained "ledger" green.
+ * Contrast (WCAG, verified): ink on paper 15.6:1, muted on paper 5.8:1, green on paper 5.6:1,
+ * white on green 5.8:1, green on green-tint 5.0:1. All pass AA for body text.
+ */
 :root {
-  --background: #ffffff;
-  --foreground: #171717;
+  --paper: #fafaf7;
+  --surface: #ffffff;
+  --surface-sunk: #f2f3ee;
+  --ink: #1c211e;
+  --ink-soft: #3a413c;
+  --muted: #5d655f;
+  --line: #e2e4dd;
+  --line-strong: #c9ccc3;
+  --green: #1d7348;
+  --green-strong: #155a38;
+  --green-tint: #e6f1ea;
+  --green-wash: #f2f8f4;
+  --amber: #9a5b06;
+  --amber-tint: #fbf1de;
+  --red: #b42318;
+  --red-tint: #fdecea;
+  --focus: #1d7348;
+  --radius-sm: 6px;
+  --radius: 10px;
+  --radius-lg: 16px;
 }
 
 @theme inline {
-  --color-background: var(--background);
-  --color-foreground: var(--foreground);
-  --font-sans: var(--font-geist-sans);
-  --font-mono: var(--font-geist-mono);
+  --color-paper: var(--paper);
+  --color-surface: var(--surface);
+  --color-sunk: var(--surface-sunk);
+  --color-ink: var(--ink);
+  --color-ink-soft: var(--ink-soft);
+  --color-muted: var(--muted);
+  --color-line: var(--line);
+  --color-line-strong: var(--line-strong);
+  --color-green: var(--green);
+  --color-green-strong: var(--green-strong);
+  --color-green-tint: var(--green-tint);
+  --color-green-wash: var(--green-wash);
+  --color-amber: var(--amber);
+  --color-amber-tint: var(--amber-tint);
+  --color-red: var(--red);
+  --color-red-tint: var(--red-tint);
+  --font-sans: var(--font-body), ui-sans-serif, system-ui, sans-serif;
+  --font-display: var(--font-display), var(--font-body), ui-sans-serif, system-ui, sans-serif;
+  --radius-sm: var(--radius-sm);
+  --radius-md: var(--radius);
+  --radius-lg: var(--radius-lg);
 }
 
-@media (prefers-color-scheme: dark) {
-  :root {
-    --background: #0a0a0a;
-    --foreground: #ededed;
+@layer base {
+  html {
+    -webkit-text-size-adjust: 100%;
+  }
+
+  body {
+    background: var(--paper);
+    color: var(--ink);
+    font-family: var(--font-body), ui-sans-serif, system-ui, sans-serif;
+    font-size: 1rem;
+    line-height: 1.55;
+    text-rendering: optimizeLegibility;
+  }
+
+  /* Numbers that get compared should line up. */
+  .tnum {
+    font-variant-numeric: tabular-nums lining-nums;
+  }
+
+  .font-display {
+    font-family: var(--font-display), var(--font-body), ui-sans-serif, system-ui, sans-serif;
+    font-optical-sizing: auto;
+  }
+
+  :focus-visible {
+    outline: 2px solid var(--focus);
+    outline-offset: 2px;
+    border-radius: 4px;
+  }
+
+  ::selection {
+    background: var(--green-tint);
   }
 }
 
-body {
-  background: var(--background);
-  color: var(--foreground);
-  font-family: Arial, Helvetica, sans-serif;
+/* The price-tag motif: a card with a punched hole on the left edge. */
+.tag {
+  position: relative;
+  background: var(--surface);
+  border: 1px solid var(--line);
+  border-radius: var(--radius-lg);
+}
+.tag::before {
+  content: "";
+  position: absolute;
+  left: 14px;
+  top: 50%;
+  width: 10px;
+  height: 10px;
+  margin-top: -5px;
+  border-radius: 999px;
+  background: var(--paper);
+  box-shadow: inset 0 0 0 1px var(--line-strong);
+}
+
+/* Score reveal: one deliberate moment of motion. */
+@keyframes pricele-rise {
+  from {
+    opacity: 0;
+    transform: translateY(6px);
+  }
+  to {
+    opacity: 1;
+    transform: none;
+  }
+}
+@keyframes pricele-slide {
+  from {
+    left: var(--from, 50%);
+  }
+}
+.reveal-in {
+  animation: pricele-rise 360ms cubic-bezier(0.2, 0.7, 0.2, 1) both;
+}
+.marker-slide {
+  animation: pricele-slide 700ms cubic-bezier(0.2, 0.7, 0.2, 1) both;
+}
+
+@media (prefers-reduced-motion: reduce) {
+  *,
+  *::before,
+  *::after {
+    animation-duration: 0.01ms !important;
+    animation-iteration-count: 1 !important;
+    transition-duration: 0.01ms !important;
+    scroll-behavior: auto !important;
+  }
+}
+
+/* Hide number input spinners (we use a text input with inputmode=decimal anyway). */
+input[type="number"]::-webkit-inner-spin-button,
+input[type="number"]::-webkit-outer-spin-button {
+  -webkit-appearance: none;
+  margin: 0;
 }
