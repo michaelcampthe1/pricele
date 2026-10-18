@@ -1,6 +1,7 @@
 import type { Metadata } from "next";
 import { adsenseClient } from "@/lib/ads";
-import { Prose, DraftNotice } from "@/components/shared/prose";
+import { Prose } from "@/components/shared/prose";
+import { CONTACT_EMAIL, POLICIES_UPDATED, SITE_DOMAIN } from "@/lib/site";
 
 export const metadata: Metadata = { title: "Privacy policy", alternates: { canonical: "/privacy" } };
 
@@ -9,7 +10,10 @@ export default function PrivacyPage() {
   return (
     <Prose>
       <h1>Privacy policy</h1>
-      <DraftNotice />
+      <p className="text-sm text-muted">Last updated {POLICIES_UPDATED}</p>
+      <p>
+        This policy explains what information Pricele ({SITE_DOMAIN}) collects and how it is used. Questions? Email <a href={`mailto:${CONTACT_EMAIL}`}>{CONTACT_EMAIL}</a>.
+      </p>
       <h2>What Pricele collects</h2>
       <ul>
         <li>
@@ -66,14 +70,16 @@ export default function PrivacyPage() {
       <h2>Service providers</h2>
       <ul>
         <li>Supabase (database and authentication).</li>
-        <li>The hosting provider that serves the website (for example Vercel).</li>
+        <li>Vercel (website hosting).</li>
         <li>Google, if you choose to sign in with Google{ads ? ", and Google AdSense for advertising (see above)" : ""}.</li>
         <li>If the operator enables the optional AI drafting tool, question topics typed by administrators are sent to the configured AI provider. No player data is sent.</li>
       </ul>
       <h2>Retention and deletion</h2>
       <p>Account and gameplay data are kept while your account exists. Delete your account at any time from your profile page: this permanently removes your account, profile, guesses, results and streaks. Guest sessions expire after about 30 days; unclaimed guest gameplay rows may be retained in anonymous form for game statistics. Administrative audit logs record admin actions, not player content.</p>
       <h2 id="contact">Contact</h2>
-      <p>Questions about privacy: use the contact method listed on the <a href="/about#contact">About page</a>.</p>
+      <p>Pricele is not directed at children under 13 and does not knowingly collect their personal information. Questions or requests about your data, including deletion if you can&apos;t sign in: email <a href={`mailto:${CONTACT_EMAIL}`}>{CONTACT_EMAIL}</a>.</p>
+      <h2>Changes</h2>
+      <p>If this policy changes, the date at the top is updated. Material changes will be announced on the site.</p>
     </Prose>
   );
 }

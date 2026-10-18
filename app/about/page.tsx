@@ -1,5 +1,6 @@
 import type { Metadata } from "next";
 import { Prose } from "@/components/shared/prose";
+import { CONTACT_EMAIL } from "@/lib/site";
 
 export const metadata: Metadata = {
   title: "About Pricele",
@@ -27,7 +28,10 @@ export default function AboutPage() {
       <h2>Daily reset and streaks</h2>
       <p>A new game starts at midnight Eastern Time. Finish all three questions on consecutive game days to build a streak. Signed-in players appear on the daily, weekly (Monday to Sunday) and all-time leaderboards. Past games stay playable in the archive as practice, which never affects official scores.</p>
       <h2 id="contact">Contact and feedback</h2>
-      <p>The operator of this deployment should list a support contact here before launch (for example a support email address or a feedback form). Until then, use the &quot;Report a problem&quot; link under any answer for question corrections.</p>
+      <p>
+        Questions, ideas, bug reports or business inquiries: email <a href={`mailto:${CONTACT_EMAIL}`}>{CONTACT_EMAIL}</a>. To flag a wrong answer, the quickest way is the &quot;Report a
+        problem&quot; link under any answer.
+      </p>
     </Prose>
   );
 }
