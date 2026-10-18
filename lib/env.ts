@@ -36,7 +36,7 @@ let cachedPublic: z.infer<typeof publicSchema> | null = null;
 export function publicEnv() {
   if (cachedPublic) return cachedPublic;
   const parsed = publicSchema.safeParse({
-    NEXT_PUBLIC_APP_URL: process.env.NEXT_PUBLIC_APP_URL || undefined,
+    NEXT_PUBLIC_APP_URL: appUrl(),
     NEXT_PUBLIC_SUPABASE_URL: process.env.NEXT_PUBLIC_SUPABASE_URL,
     NEXT_PUBLIC_SUPABASE_PUBLISHABLE_KEY:
       process.env.NEXT_PUBLIC_SUPABASE_PUBLISHABLE_KEY ?? process.env.NEXT_PUBLIC_SUPABASE_ANON_KEY,
@@ -73,6 +73,12 @@ export function isSupabaseConfigured(): boolean {
   );
 }
 
+/**
+ * Public site address. Uses NEXT_PUBLIC_APP_URL when set (e.g. a custom domain); on Vercel it
+ * otherwise falls back to the project's production address, so the first deploy works without it.
+ */
 export function appUrl(): string {
-  return (process.env.NEXT_PUBLIC_APP_URL || "http://localhost:3000").replace(/\/$/, "");
+  const vercel = process.env.VERCEL_PROJECT_PRODUCTION_URL;
+  const fallback = vercel ? `https://${vercel}` : "http://localhost:3000";
+  return (process.env.NEXT_PUBLIC_APP_URL || fallback).replace(/\/$/, "");
 }

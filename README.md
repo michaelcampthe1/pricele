@@ -1,5 +1,7 @@
 # Pricele
 
+> **Putting it online?** Follow [docs/GO-LIVE.md](docs/GO-LIVE.md): one SQL paste in Supabase, four settings in Vercel.
+
 A daily price-guessing game. Every day players get three real-world prices to estimate — easy, medium and hard — with one official guess each, up to 1,000 points per question (3,000 per day), streaks, leaderboards, an archive with practice mode, and an admin dashboard for sourcing, verifying and publishing questions.
 
 **Stack:** Next.js 16 (App Router) · React 19 · TypeScript (strict) · Tailwind CSS 4 · Supabase (Postgres + Auth) · Zod · Vitest · Playwright.

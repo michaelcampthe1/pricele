@@ -17,7 +17,8 @@
     "admin:bootstrap": "tsx scripts/admin-role.ts bootstrap",
     "admin:grant": "tsx scripts/admin-role.ts grant",
     "admin:revoke": "tsx scripts/admin-role.ts revoke",
-    "check": "npm run lint && npm run typecheck && npm run test:all && npm run build"
+    "check": "npm run lint && npm run typecheck && npm run test:all && npm run build",
+    "db:setup-sql": "tsx scripts/build-setup-sql.ts"
   },
   "dependencies": {
     "@supabase/ssr": "^0.12.7",
