@@ -2,27 +2,332 @@
  "_note": "Question pack 3: real items researched on 2026-10-18. Rule: only real prices (what something sells or sold for), never averages or medians.",
  "researchedOn": "2026-10-18",
  "questions": [
-  {"slug":"pack3-costco-rotisserie-chicken","difficulty":"easy","category":"everyday-products","prompt":"How much is a rotisserie chicken at Costco?","context":"The whole rotisserie chicken at a U.S. Costco warehouse, 2026.","image":"/items/rotisserie-chicken.svg","imageAlt":"Illustration of a golden rotisserie chicken in a clear plastic container","amount":"4.99","definition":"Costco U.S. warehouse price","referenceDate":"2026-06-24","explanation":"Costco has sold its rotisserie chicken for $4.99 since it was introduced in 1994. The only time it went up ($5.99) was during the Great Recession.","source":{"title":"The One And Only Time Costco Raised Its Rotisserie Chicken Price","publisher":"Tasting Table","url":"https://www.tastingtable.com/2198157/costco-rotisserie-chicken-raised-price-recession/","excerpt":"It has been consistently priced at $4.99 since it was first put on the shelves in 1994."},"notes":""},
-  {"slug":"pack3-spotify-premium","difficulty":"easy","category":"entertainment","prompt":"How much is Spotify Premium (Individual) per month in the U.S.?","context":"The Individual plan, monthly price after Spotify's January 2026 increase.","image":"/items/music-stream.svg","imageAlt":"Illustration of headphones around a phone playing music","amount":"12.99","definition":"Spotify U.S. monthly price, Premium Individual","referenceDate":"2026-01-15","explanation":"Spotify raised its U.S. Premium Individual plan from $11.99 to $12.99 a month in January 2026.","source":{"title":"Spotify announces price hikes across all major plans in the US","publisher":"Notebookcheck","url":"https://www.notebookcheck.net/Spotify-announces-price-hikes-across-all-major-plans-in-the-US.1205251.0.html","excerpt":"The Individual Premium plan now costs $12.99 per month, up from $11.99."},"notes":"Confirm on spotify.com/premium before verifying."},
-  {"slug":"pack3-airtag-2","difficulty":"easy","category":"technology","prompt":"How much does one Apple AirTag (2nd generation) cost?","context":"A single AirTag 2 at Apple's regular U.S. price, not a sale.","image":"/items/tracker-tag.svg","imageAlt":"Illustration of a round white item tracker on a key ring with a map pin","amount":"29.00","definition":"Apple's U.S. retail price, single AirTag 2","referenceDate":"2026-08-18","explanation":"A single AirTag 2 costs $29 at Apple. A 4-pack is $99, and stores often discount it.","source":{"title":"AirTag 2 Drops to Low Price of $89 for 4-Pack","publisher":"MacRumors","url":"https://www.macrumors.com/2026/08/18/airtag-2-89-for-4-pack/","excerpt":"available for $24.00, down from $29.00"},"notes":"Confirm on apple.com/airtag before verifying."},
-  {"slug":"pack3-powerball-ticket","difficulty":"easy","category":"personal-finance","prompt":"How much does one Powerball lottery play cost?","context":"A single standard Powerball play, without the Power Play add-on.","image":"/items/lottery-ticket.svg","imageAlt":"Illustration of a lottery ticket with five white numbers and one red number","amount":"2.00","definition":"Price of one Powerball play","referenceDate":"2025-12-23","explanation":"Each Powerball play costs $2. Adding Power Play, which multiplies non-jackpot prizes, costs $1 more.","source":{"title":"How much does a Powerball lottery ticket cost?","publisher":"FOX 5 New York","url":"https://www.fox5ny.com/news/how-much-does-powerball-lottery-ticket-cost-2025","excerpt":"A Powerball ticket costs $2 per play."},"notes":""},
-  {"slug":"pack3-xbox-series-x","difficulty":"easy","category":"technology","prompt":"How much does an Xbox Series X cost in the U.S. right now?","context":"The standard 1TB Xbox Series X with a disc drive, Microsoft's U.S. price since August 1, 2026.","image":"/items/console-tower.svg","imageAlt":"Illustration of a tall black game console next to a controller","amount":"799.99","definition":"Microsoft's U.S. retail price, Xbox Series X 1TB","referenceDate":"2026-08-01","explanation":"Microsoft raised the Xbox Series X to $799.99 in the U.S. on August 1, 2026, its second increase in a year. It launched at $499 in 2020.","source":{"title":"Here's A Breakdown Of The New Prices For Xbox Series X|S Consoles As Of August 2026","publisher":"Pure Xbox","url":"https://www.purexbox.com/news/2026/08/heres-a-breakdown-of-the-new-prices-for-xbox-series-xs-consoles-as-of-august-2026","excerpt":"Xbox Series X (1TB, Disc) | £669.99 | $799.99"},"notes":"Confirm on xbox.com before verifying."},
-  {"slug":"pack3-galaxy-z-fold-8","difficulty":"medium","category":"technology","prompt":"What is the starting price of the Samsung Galaxy Z Fold 8?","context":"Samsung's U.S. starting price for the base model (256GB) at its 2026 launch.","image":"/items/foldable-phone.svg","imageAlt":"Illustration of a foldable phone opened like a book","amount":"1899.00","definition":"Samsung's U.S. starting retail price","referenceDate":"2026-07-22","explanation":"Samsung announced the Galaxy Z Fold 8 on July 22, 2026, starting at $1,899 in the U.S. for the 12GB + 256GB model.","source":{"title":"Samsung confirms Galaxy Z Fold 8 price starts at $1,899","publisher":"SamMobile","url":"https://www.sammobile.com/news/samsung-confirms-galaxy-z-fold-8-price-starts-at-1899/","excerpt":"Pricing starts at $1,899 in the United States for the 12GB + 256GB model."},"notes":""},
-  {"slug":"pack3-honda-civic-2027","difficulty":"medium","category":"everyday-products","prompt":"What is the starting price of a 2027 Honda Civic?","context":"The base Civic Sedan LX, manufacturer's suggested retail price before the destination fee.","image":"/items/compact-car.svg","imageAlt":"Illustration of a white compact sedan","amount":"24995.00","definition":"Starting MSRP of the 2027 Civic Sedan LX, excluding destination","referenceDate":"2026-10-08","explanation":"The 2027 Honda Civic Sedan LX starts at $24,995 before a $1,295 destination charge.","source":{"title":"2027 Honda Civic Arrives at Dealers with New Sport-L Trim","publisher":"AutoGuide","url":"https://www.autoguide.com/auto/manufacturers/honda/2027-honda-civic-arrives-at-dealers-with-new-sport-l-trim-44639983","excerpt":"All MSRP figures exclude a $1,295 destination and handling charge."},"notes":"Confirm on automobiles.honda.com before verifying."},
-  {"slug":"pack3-cobain-cardigan","difficulty":"medium","category":"entertainment","prompt":"How much did Kurt Cobain's cardigan from Nirvana's MTV Unplugged show sell for at auction?","context":"The olive-green sweater he wore at the 1993 concert, sold by Julien's Auctions in October 2019.","image":"/items/cardigan.svg","imageAlt":"Illustration of a worn olive-green button-up cardigan","amount":"334000.00","definition":"Final auction price","referenceDate":"2019-10-26","explanation":"Julien's Auctions sold Cobain's unwashed MTV Unplugged cardigan for $334,000 in October 2019, a record for a sweater at the time.","source":{"title":"Kurt Cobain's 'Unplugged' Sweater Sells for Record $334,000 at Auction","publisher":"Rolling Stone","url":"https://www.rollingstone.com/music/music-news/kurt-cobain-unplugged-sweater-sells-334000-auction-904246/","excerpt":"Kurt Cobain's famed green cardigan from Nirvana's MTV Unplugged concert sold for $334,000 at auction Saturday"},"notes":""},
-  {"slug":"pack3-titanic-door","difficulty":"medium","category":"entertainment","prompt":"How much did the floating 'door' from the movie Titanic sell for at auction?","context":"The wooden panel Rose floats on at the end of the 1997 film, sold by Heritage Auctions in March 2024.","image":"/items/floating-door.svg","imageAlt":"Illustration of a wooden panel floating on dark ocean water at night","amount":"718750.00","definition":"Final auction price","referenceDate":"2024-03-23","explanation":"Heritage Auctions sold the Titanic 'door', actually part of a door frame, for $718,750 on March 23, 2024.","source":{"title":"Controversial 'Titanic' Door Sells at Auction","publisher":"Smithsonian Magazine","url":"https://www.smithsonianmag.com/smart-news/controversial-titanic-door-sells-at-auction-180984050/","excerpt":"the floating wooden panel from Titanic—has sold at auction for $718,750."},"notes":""},
-  {"slug":"pack3-thriller-jacket","difficulty":"medium","category":"luxury-goods","prompt":"How much did Michael Jackson's jacket from the 'Thriller' music video sell for at auction?","context":"The red-and-black leather jacket he wore in the 1983 video, sold by Julien's Auctions in June 2011.","image":"/items/leather-jacket.svg","imageAlt":"Illustration of a red leather jacket with black stripes","amount":"1800000.00","definition":"Final auction price","referenceDate":"2011-06-26","explanation":"The Thriller jacket sold for $1.8 million at Julien's Auctions in Beverly Hills in June 2011.","source":{"title":"Michael Jackson's 'Thriller' jacket sells for $1.8M at auction","publisher":"ABC7 Chicago","url":"https://abc7chicago.com/archive/8215503","excerpt":"Michael Jackson's 'Thriller' jacket sells for $1.8M at auction"},"notes":""},
-  {"slug":"pack3-pikachu-illustrator","difficulty":"hard","category":"entertainment","prompt":"How much did Logan Paul's Pikachu Illustrator Pokémon card sell for at auction?","context":"The PSA 10 card sold by Goldin in February 2026, final price including the buyer's premium.","image":"/items/trading-card.svg","imageAlt":"Illustration of a yellow trading card in a clear graded case","amount":"16492000.00","definition":"Final auction price including buyer's premium","referenceDate":"2026-02-16","explanation":"Goldin sold the Pikachu Illustrator card for $16,492,000 on February 16, 2026 ($13.3 million plus fees), the most ever paid for a trading card.","source":{"title":"Logan Paul's rare Pokemon card becomes most expensive ever sold in record-setting auction","publisher":"Guinness World Records","url":"https://www.guinnessworldrecords.com/news/2026/2/logan-pauls-rare-pokemon-card-becomes-most-expensive-ever-sold-in-record-setting-auction","excerpt":"sold for $16,492,000 ... including the buyer's premium"},"notes":""},
-  {"slug":"pack3-babe-ruth-called-shot-jersey","difficulty":"hard","category":"sports","prompt":"How much did Babe Ruth's 'called shot' jersey sell for at auction?","context":"The Yankees jersey he wore in the 1932 World Series, sold by Heritage Auctions in August 2024.","image":"/items/baseball-jersey.svg","imageAlt":"Illustration of a white pinstriped baseball jersey with the number 3","amount":"24120000.00","definition":"Final auction price","referenceDate":"2024-08-25","explanation":"Heritage Auctions sold the jersey Ruth wore when he 'called his shot' in the 1932 World Series for $24.12 million, a record for any sports collectible.","source":{"title":"Babe Ruth's 'called shot' jersey sells at auction for over $24 million","publisher":"ABC News (Associated Press)","url":"https://abcnews.go.com/US/wireStory/babe-ruths-called-shot-jersey-sells-auction-24-113135391","excerpt":"Heritage Auctions said the New York Yankee slugger's jersey went for a record-breaking $24.12 million"},"notes":""},
-  {"slug":"pack3-t-rex-stan","difficulty":"hard","category":"science-and-infrastructure","prompt":"How much did 'Stan', a Tyrannosaurus rex skeleton, sell for at auction?","context":"One of the most complete T. rex skeletons ever found, sold by Christie's in New York in October 2020.","image":"/items/dinosaur-skeleton.svg","imageAlt":"Illustration of a Tyrannosaurus rex skeleton on a museum stand","amount":"31800000.00","definition":"Final auction price","referenceDate":"2020-10-06","explanation":"Christie's sold Stan for $31.8 million on October 6, 2020, nearly four times its estimate. It is now headed to a natural history museum in Abu Dhabi.","source":{"title":"Stan the Tyrannosaurus rex sold at auction; paleontologists are furious","publisher":"National Geographic","url":"https://www.nationalgeographic.com/science/article/stan-tyrannosaurus-rex-sold-at-auction-paleontologists-are-furious","excerpt":"On October 6, the London-based auction house Christie's sold the T. rex for a record $31.8 million"},"notes":""},
-  {"slug":"pack3-griffin-penthouse","difficulty":"hard","category":"real-estate","prompt":"How much did billionaire Ken Griffin pay for his New York penthouse, the most expensive home ever sold in the U.S. at the time?","context":"The penthouse at 220 Central Park South, closed in January 2019.","image":"/items/penthouse-tower.svg","imageAlt":"Illustration of a tall limestone apartment tower beside a park","amount":"238000000.00","definition":"Purchase price","referenceDate":"2019-01-23","explanation":"Ken Griffin paid about $238 million for the penthouse in 2019, the most ever paid for a home in the United States at the time.","source":{"title":"Billionaire Ken Griffin Buys the Most Expensive Home Ever Sold in the US","publisher":"NBC New York","url":"https://www.nbcnewyork.com/news/national-international/Billionaire-Ken-Griffin-Buys-the-Most-Expensive-Home-Ever-Sold-in-the-US-504764651.html","excerpt":"paying around $238 million for a New York penthouse overlooking Central Park"},"notes":"Reported as 'around $238 million'; the commonly cited figure is $238 million."},
-  {"slug":"pack3-instagram-acquisition","difficulty":"hard","category":"business-and-markets","prompt":"How much did Facebook pay to buy Instagram in 2012?","context":"The price Facebook agreed to pay, in cash and stock, when it announced the deal in April 2012.","image":"/items/photo-app.svg","imageAlt":"Illustration of a camera surrounded by printed photos","amount":"1000000000.00","definition":"Announced purchase price","referenceDate":"2012-04-09","explanation":"Facebook agreed to buy Instagram for $1 billion in cash and stock on April 9, 2012, when the app had about 13 employees.","source":{"title":"Facebook acquires Instagram for $1 billion","publisher":"FOX 13 (CNN)","url":"https://www.fox13now.com/2012/04/09/facebook-acquires-instagram-for-1-billion","excerpt":"Facebook has agreed to buy photo sharing network Instagram for $1 billion in a combination of cash and stock"},"notes":"Because of Facebook's stock price, the deal was worth about $715 million when it closed; the question asks for the agreed price."}
+  {
+   "slug": "pack3-costco-rotisserie-chicken",
+   "difficulty": "easy",
+   "category": "everyday-products",
+   "prompt": "How much is a rotisserie chicken at Costco?",
+   "context": "The whole rotisserie chicken at a U.S. Costco warehouse, 2026.",
+   "image": "/items/rotisserie-chicken.svg",
+   "imageAlt": "Illustration of a golden rotisserie chicken in a clear plastic container",
+   "amount": "4.99",
+   "definition": "Costco U.S. warehouse price",
+   "referenceDate": "2026-06-24",
+   "explanation": "Costco has sold its rotisserie chicken for $4.99 since it was introduced in 1994. The only time it went up ($5.99) was during the Great Recession.",
+   "source": {
+    "title": "The One And Only Time Costco Raised Its Rotisserie Chicken Price",
+    "publisher": "Tasting Table",
+    "url": "https://www.tastingtable.com/2198157/costco-rotisserie-chicken-raised-price-recession/",
+    "excerpt": "It has been consistently priced at $4.99 since it was first put on the shelves in 1994."
+   },
+   "notes": ""
+  },
+  {
+   "slug": "pack3-spotify-premium",
+   "difficulty": "easy",
+   "category": "entertainment",
+   "prompt": "How much is Spotify Premium (Individual) per month in the U.S.?",
+   "context": "The Individual plan, monthly price after Spotify's January 2026 increase.",
+   "image": "/items/music-stream.svg",
+   "imageAlt": "Illustration of headphones around a phone playing music",
+   "amount": "12.99",
+   "definition": "Spotify U.S. monthly price, Premium Individual",
+   "referenceDate": "2026-01-15",
+   "explanation": "Spotify raised its U.S. Premium Individual plan from $11.99 to $12.99 a month in January 2026.",
+   "source": {
+    "title": "Spotify announces price hikes across all major plans in the US",
+    "publisher": "Notebookcheck",
+    "url": "https://www.notebookcheck.net/Spotify-announces-price-hikes-across-all-major-plans-in-the-US.1205251.0.html",
+    "excerpt": "The Individual Premium plan now costs $12.99 per month, up from $11.99."
+   },
+   "notes": "Confirm on spotify.com/premium before verifying."
+  },
+  {
+   "slug": "pack3-airtag-2",
+   "difficulty": "easy",
+   "category": "technology",
+   "prompt": "How much does one Apple AirTag (2nd generation) cost?",
+   "context": "A single AirTag 2 at Apple's regular U.S. price, not a sale.",
+   "image": "/items/tracker-tag.svg",
+   "imageAlt": "Illustration of a round white item tracker on a key ring with a map pin",
+   "amount": "29.00",
+   "definition": "Apple's U.S. retail price, single AirTag 2",
+   "referenceDate": "2026-08-18",
+   "explanation": "A single AirTag 2 costs $29 at Apple. A 4-pack is $99, and stores often discount it.",
+   "source": {
+    "title": "AirTag 2 Drops to Low Price of $89 for 4-Pack",
+    "publisher": "MacRumors",
+    "url": "https://www.macrumors.com/2026/08/18/airtag-2-89-for-4-pack/",
+    "excerpt": "available for $24.00, down from $29.00"
+   },
+   "notes": "Confirm on apple.com/airtag before verifying."
+  },
+  {
+   "slug": "pack3-powerball-ticket",
+   "difficulty": "easy",
+   "category": "personal-finance",
+   "prompt": "How much does one Powerball lottery play cost?",
+   "context": "A single standard Powerball play, without the Power Play add-on.",
+   "image": "/items/lottery-ticket.svg",
+   "imageAlt": "Illustration of a lottery ticket with five white numbers and one red number",
+   "amount": "2.00",
+   "definition": "Price of one Powerball play",
+   "referenceDate": "2025-12-23",
+   "explanation": "Each Powerball play costs $2. Adding Power Play, which multiplies non-jackpot prizes, costs $1 more.",
+   "source": {
+    "title": "How much does a Powerball lottery ticket cost?",
+    "publisher": "FOX 5 New York",
+    "url": "https://www.fox5ny.com/news/how-much-does-powerball-lottery-ticket-cost-2025",
+    "excerpt": "A Powerball ticket costs $2 per play."
+   },
+   "notes": ""
+  },
+  {
+   "slug": "pack3-xbox-series-x",
+   "difficulty": "easy",
+   "category": "technology",
+   "prompt": "How much does an Xbox Series X cost in the U.S. right now?",
+   "context": "The standard 1TB Xbox Series X with a disc drive, Microsoft's U.S. price since August 1, 2026.",
+   "image": "/items/console-tower.svg",
+   "imageAlt": "Illustration of a tall black game console next to a controller",
+   "amount": "799.99",
+   "definition": "Microsoft's U.S. retail price, Xbox Series X 1TB",
+   "referenceDate": "2026-08-01",
+   "explanation": "Microsoft raised the Xbox Series X to $799.99 in the U.S. on August 1, 2026, its second increase in a year. It launched at $499 in 2020.",
+   "source": {
+    "title": "Here's A Breakdown Of The New Prices For Xbox Series X|S Consoles As Of August 2026",
+    "publisher": "Pure Xbox",
+    "url": "https://www.purexbox.com/news/2026/08/heres-a-breakdown-of-the-new-prices-for-xbox-series-xs-consoles-as-of-august-2026",
+    "excerpt": "Xbox Series X (1TB, Disc) | £669.99 | $799.99"
+   },
+   "notes": "Confirm on xbox.com before verifying."
+  },
+  {
+   "slug": "pack3-galaxy-z-fold-8",
+   "difficulty": "medium",
+   "category": "technology",
+   "prompt": "What is the starting price of the Samsung Galaxy Z Fold 8?",
+   "context": "Samsung's U.S. starting price for the base model (256GB) at its 2026 launch.",
+   "image": "/items/foldable-phone.svg",
+   "imageAlt": "Illustration of a foldable phone opened like a book",
+   "amount": "1899.00",
+   "definition": "Samsung's U.S. starting retail price",
+   "referenceDate": "2026-07-22",
+   "explanation": "Samsung announced the Galaxy Z Fold 8 on July 22, 2026, starting at $1,899 in the U.S. for the 12GB + 256GB model.",
+   "source": {
+    "title": "Samsung confirms Galaxy Z Fold 8 price starts at $1,899",
+    "publisher": "SamMobile",
+    "url": "https://www.sammobile.com/news/samsung-confirms-galaxy-z-fold-8-price-starts-at-1899/",
+    "excerpt": "Pricing starts at $1,899 in the United States for the 12GB + 256GB model."
+   },
+   "notes": ""
+  },
+  {
+   "slug": "pack3-honda-civic-2027",
+   "difficulty": "medium",
+   "category": "everyday-products",
+   "prompt": "What is the starting price of a 2027 Honda Civic?",
+   "context": "The base Civic Sedan LX, manufacturer's suggested retail price before the destination fee.",
+   "image": "/items/compact-car.svg",
+   "imageAlt": "Illustration of a white compact sedan",
+   "amount": "24995.00",
+   "definition": "Starting MSRP of the 2027 Civic Sedan LX, excluding destination",
+   "referenceDate": "2026-10-08",
+   "explanation": "The 2027 Honda Civic Sedan LX starts at $24,995 before a $1,295 destination charge.",
+   "source": {
+    "title": "2027 Honda Civic Arrives at Dealers with New Sport-L Trim",
+    "publisher": "AutoGuide",
+    "url": "https://www.autoguide.com/auto/manufacturers/honda/2027-honda-civic-arrives-at-dealers-with-new-sport-l-trim-44639983",
+    "excerpt": "All MSRP figures exclude a $1,295 destination and handling charge."
+   },
+   "notes": "Confirm on automobiles.honda.com before verifying."
+  },
+  {
+   "slug": "pack3-cobain-cardigan",
+   "difficulty": "medium",
+   "category": "entertainment",
+   "prompt": "How much did Kurt Cobain's cardigan from Nirvana's MTV Unplugged show sell for at auction?",
+   "context": "The olive-green sweater he wore at the 1993 concert, sold by Julien's Auctions in October 2019.",
+   "image": "/items/cardigan.svg",
+   "imageAlt": "Illustration of a worn olive-green button-up cardigan",
+   "amount": "334000.00",
+   "definition": "Final auction price",
+   "referenceDate": "2019-10-26",
+   "explanation": "Julien's Auctions sold Cobain's unwashed MTV Unplugged cardigan for $334,000 in October 2019, a record for a sweater at the time.",
+   "source": {
+    "title": "Kurt Cobain's 'Unplugged' Sweater Sells for Record $334,000 at Auction",
+    "publisher": "Rolling Stone",
+    "url": "https://www.rollingstone.com/music/music-news/kurt-cobain-unplugged-sweater-sells-334000-auction-904246/",
+    "excerpt": "Kurt Cobain's famed green cardigan from Nirvana's MTV Unplugged concert sold for $334,000 at auction Saturday"
+   },
+   "notes": ""
+  },
+  {
+   "slug": "pack3-titanic-door",
+   "difficulty": "medium",
+   "category": "entertainment",
+   "prompt": "How much did the floating 'door' from the movie Titanic sell for at auction?",
+   "context": "The wooden panel Rose floats on at the end of the 1997 film, sold by Heritage Auctions in March 2024.",
+   "image": "/items/floating-door.svg",
+   "imageAlt": "Illustration of a wooden panel floating on dark ocean water at night",
+   "amount": "718750.00",
+   "definition": "Final auction price",
+   "referenceDate": "2024-03-23",
+   "explanation": "Heritage Auctions sold the Titanic 'door', actually part of a door frame, for $718,750 on March 23, 2024.",
+   "source": {
+    "title": "Controversial 'Titanic' Door Sells at Auction",
+    "publisher": "Smithsonian Magazine",
+    "url": "https://www.smithsonianmag.com/smart-news/controversial-titanic-door-sells-at-auction-180984050/",
+    "excerpt": "the floating wooden panel from Titanic—has sold at auction for $718,750."
+   },
+   "notes": ""
+  },
+  {
+   "slug": "pack3-thriller-jacket",
+   "difficulty": "medium",
+   "category": "luxury-goods",
+   "prompt": "How much did Michael Jackson's jacket from the 'Thriller' music video sell for at auction?",
+   "context": "The red-and-black leather jacket he wore in the 1983 video, sold by Julien's Auctions in June 2011.",
+   "image": "/items/leather-jacket.svg",
+   "imageAlt": "Illustration of a red leather jacket with black stripes",
+   "amount": "1800000.00",
+   "definition": "Final auction price",
+   "referenceDate": "2011-06-26",
+   "explanation": "The Thriller jacket sold for $1.8 million at Julien's Auctions in Beverly Hills in June 2011.",
+   "source": {
+    "title": "Michael Jackson's 'Thriller' jacket sells for $1.8M at auction",
+    "publisher": "ABC7 Chicago",
+    "url": "https://abc7chicago.com/archive/8215503",
+    "excerpt": "Michael Jackson's 'Thriller' jacket sells for $1.8M at auction"
+   },
+   "notes": ""
+  },
+  {
+   "slug": "pack3-pikachu-illustrator",
+   "difficulty": "hard",
+   "category": "entertainment",
+   "prompt": "How much did Logan Paul's Pikachu Illustrator Pokémon card sell for at auction?",
+   "context": "The PSA 10 card sold by Goldin in February 2026, final price including the buyer's premium.",
+   "image": "/items/trading-card.svg",
+   "imageAlt": "Illustration of a yellow trading card in a clear graded case",
+   "amount": "16492000.00",
+   "definition": "Final auction price including buyer's premium",
+   "referenceDate": "2026-02-16",
+   "explanation": "Goldin sold the Pikachu Illustrator card for $16,492,000 on February 16, 2026 ($13.3 million plus fees), the most ever paid for a trading card.",
+   "source": {
+    "title": "Logan Paul's rare Pokemon card becomes most expensive ever sold in record-setting auction",
+    "publisher": "Guinness World Records",
+    "url": "https://www.guinnessworldrecords.com/news/2026/2/logan-pauls-rare-pokemon-card-becomes-most-expensive-ever-sold-in-record-setting-auction",
+    "excerpt": "sold for $16,492,000 ... including the buyer's premium"
+   },
+   "notes": ""
+  },
+  {
+   "slug": "pack3-beeple-nft",
+   "difficulty": "hard",
+   "category": "entertainment",
+   "prompt": "How much did a single digital-only artwork (an NFT) by the artist Beeple sell for at Christie's?",
+   "context": "'Everydays: The First 5000 Days', a collage of 5,000 digital images that exists only as a file, sold in March 2021. Final price with fees.",
+   "image": "/items/digital-art.svg",
+   "imageAlt": "Illustration of a computer screen filled with a colorful grid of small images",
+   "amount": "69300000.00",
+   "definition": "Final auction price including fees",
+   "referenceDate": "2021-03-11",
+   "explanation": "Christie's sold Beeple's NFT for $69.3 million with fees on March 11, 2021, the highest price ever paid for a purely digital artwork at the time.",
+   "source": {
+    "title": "Beeple NFT work sells for astonishing $69.3m at Christie's",
+    "publisher": "The Art Newspaper",
+    "url": "https://www.theartnewspaper.com/2021/03/11/wtaf-beeple-nft-work-sells-for-astonishing-dollar693m-at-christies-after-flurry-of-last-minute-bids-nearly-crashes-website",
+    "excerpt": "has sold for an astonishing $60.25m ($69.3m with fees)"
+   },
+   "notes": ""
+  },
+  {
+   "slug": "pack3-t-rex-stan",
+   "difficulty": "hard",
+   "category": "science-and-infrastructure",
+   "prompt": "How much did 'Stan', a Tyrannosaurus rex skeleton, sell for at auction?",
+   "context": "One of the most complete T. rex skeletons ever found, sold by Christie's in New York in October 2020.",
+   "image": "/items/dinosaur-skeleton.svg",
+   "imageAlt": "Illustration of a Tyrannosaurus rex skeleton on a museum stand",
+   "amount": "31800000.00",
+   "definition": "Final auction price",
+   "referenceDate": "2020-10-06",
+   "explanation": "Christie's sold Stan for $31.8 million on October 6, 2020, nearly four times its estimate. It is now headed to a natural history museum in Abu Dhabi.",
+   "source": {
+    "title": "Stan the Tyrannosaurus rex sold at auction; paleontologists are furious",
+    "publisher": "National Geographic",
+    "url": "https://www.nationalgeographic.com/science/article/stan-tyrannosaurus-rex-sold-at-auction-paleontologists-are-furious",
+    "excerpt": "On October 6, the London-based auction house Christie's sold the T. rex for a record $31.8 million"
+   },
+   "notes": ""
+  },
+  {
+   "slug": "pack3-griffin-penthouse",
+   "difficulty": "hard",
+   "category": "real-estate",
+   "prompt": "How much did billionaire Ken Griffin pay for his New York penthouse, the most expensive home ever sold in the U.S. at the time?",
+   "context": "The penthouse at 220 Central Park South, closed in January 2019.",
+   "image": "/items/penthouse-tower.svg",
+   "imageAlt": "Illustration of a tall limestone apartment tower beside a park",
+   "amount": "238000000.00",
+   "definition": "Purchase price",
+   "referenceDate": "2019-01-23",
+   "explanation": "Ken Griffin paid about $238 million for the penthouse in 2019, the most ever paid for a home in the United States at the time.",
+   "source": {
+    "title": "Billionaire Ken Griffin Buys the Most Expensive Home Ever Sold in the US",
+    "publisher": "NBC New York",
+    "url": "https://www.nbcnewyork.com/news/national-international/Billionaire-Ken-Griffin-Buys-the-Most-Expensive-Home-Ever-Sold-in-the-US-504764651.html",
+    "excerpt": "paying around $238 million for a New York penthouse overlooking Central Park"
+   },
+   "notes": "Reported as 'around $238 million'; the commonly cited figure is $238 million."
+  },
+  {
+   "slug": "pack3-instagram-acquisition",
+   "difficulty": "hard",
+   "category": "business-and-markets",
+   "prompt": "How much did Facebook pay to buy Instagram in 2012?",
+   "context": "The price Facebook agreed to pay, in cash and stock, when it announced the deal in April 2012.",
+   "image": "/items/photo-app.svg",
+   "imageAlt": "Illustration of a camera surrounded by printed photos",
+   "amount": "1000000000.00",
+   "definition": "Announced purchase price",
+   "referenceDate": "2012-04-09",
+   "explanation": "Facebook agreed to buy Instagram for $1 billion in cash and stock on April 9, 2012, when the app had about 13 employees.",
+   "source": {
+    "title": "Facebook acquires Instagram for $1 billion",
+    "publisher": "FOX 13 (CNN)",
+    "url": "https://www.fox13now.com/2012/04/09/facebook-acquires-instagram-for-1-billion",
+    "excerpt": "Facebook has agreed to buy photo sharing network Instagram for $1 billion in a combination of cash and stock"
+   },
+   "notes": "Because of Facebook's stock price, the deal was worth about $715 million when it closed; the question asks for the agreed price."
+  }
  ],
  "days": [
-  ["pack3-costco-rotisserie-chicken","pack3-galaxy-z-fold-8","pack3-instagram-acquisition"],
-  ["pack3-spotify-premium","pack3-honda-civic-2027","pack3-babe-ruth-called-shot-jersey"],
-  ["pack3-airtag-2","pack3-titanic-door","pack3-t-rex-stan"],
-  ["pack3-powerball-ticket","pack3-cobain-cardigan","pack3-griffin-penthouse"],
-  ["pack3-xbox-series-x","pack3-thriller-jacket","pack3-pikachu-illustrator"]
+  [
+   "pack3-costco-rotisserie-chicken",
+   "pack3-galaxy-z-fold-8",
+   "pack3-instagram-acquisition"
+  ],
+  [
+   "pack3-spotify-premium",
+   "pack3-honda-civic-2027",
+   "pack3-beeple-nft"
+  ],
+  [
+   "pack3-airtag-2",
+   "pack3-titanic-door",
+   "pack3-t-rex-stan"
+  ],
+  [
+   "pack3-powerball-ticket",
+   "pack3-cobain-cardigan",
+   "pack3-griffin-penthouse"
+  ],
+  [
+   "pack3-xbox-series-x",
+   "pack3-thriller-jacket",
+   "pack3-pikachu-illustrator"
+  ]
  ]
 }
