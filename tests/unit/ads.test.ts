@@ -11,10 +11,10 @@ afterEach(() => {
 });
 
 describe("AdSense configuration", () => {
-  it("is off and publishes nothing by default", () => {
+  it("verifies with the site's publisher id but shows no ads by default", () => {
     for (const k of keys) delete process.env[k];
-    expect(adsenseClient()).toBeNull();
-    expect(adsTxt()).toBeNull();
+    expect(adsenseClient()).toBe("ca-pub-5161455847685842");
+    expect(adsTxt()).toBe("google.com, pub-5161455847685842, DIRECT, f08c47fec0942fa0\n");
     expect(adsEnabled()).toBe(false);
   });
 
