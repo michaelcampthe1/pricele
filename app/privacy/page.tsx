@@ -1,9 +1,11 @@
 import type { Metadata } from "next";
+import { adsenseClient } from "@/lib/ads";
 import { Prose, DraftNotice } from "@/components/shared/prose";
 
 export const metadata: Metadata = { title: "Privacy policy", alternates: { canonical: "/privacy" } };
 
 export default function PrivacyPage() {
+  const ads = adsenseClient() !== null;
   return (
     <Prose>
       <h1>Privacy policy</h1>
@@ -30,7 +32,7 @@ export default function PrivacyPage() {
         </li>
       </ul>
       <h2>Cookies and sessions</h2>
-      <p>Pricele uses only strictly necessary cookies:</p>
+      <p>Pricele itself sets only strictly necessary cookies{ads ? " (advertising cookies are described below)" : ""}:</p>
       <ul>
         <li>Authentication cookies set by Supabase Auth to keep you signed in.</li>
         <li>
@@ -38,14 +40,34 @@ export default function PrivacyPage() {
           survives refreshes. Only a one-way hash of its value is stored on our servers.
         </li>
       </ul>
-      <p>There is no analytics or advertising tracking at this time. If advertising or analytics are added, this policy will be updated and, where required, consent will be requested first.</p>
+      {ads ? (
+        <>
+      <h2>Advertising</h2>
+      <p>
+        Pricele is free and supported by ads shown by Google AdSense on some pages (never while you are answering a question). Google and
+        its partners may use cookies or similar technologies to show ads and measure them, including ads based on your previous visits to
+        this and other websites. Visitors in the European Economic Area, the UK and Switzerland are asked for consent first. You can turn
+        off personalized ads in{" "}
+        <a href="https://adssettings.google.com" rel="noopener noreferrer">
+          Google&apos;s Ad Settings
+        </a>{" "}
+        and learn more at{" "}
+        <a href="https://policies.google.com/technologies/ads" rel="noopener noreferrer">
+          How Google uses information from sites that use its services
+        </a>
+        . There is no other analytics or advertising tracking.
+      </p>
+        </>
+      ) : (
+        <p>There is no analytics or advertising tracking at this time.</p>
+      )}
       <h2>How data is used</h2>
       <p>To run the game: score guesses, show results, compute streaks and leaderboards, prevent abuse, and fix incorrect questions. Public profiles and leaderboards show your username, display name, avatar and scores; turn off &quot;Public profile&quot; to appear as &quot;Private player&quot;. Your email is never shown publicly.</p>
       <h2>Service providers</h2>
       <ul>
         <li>Supabase (database and authentication).</li>
         <li>The hosting provider that serves the website (for example Vercel).</li>
-        <li>Google, only if you choose to sign in with Google.</li>
+        <li>Google, if you choose to sign in with Google{ads ? ", and Google AdSense for advertising (see above)" : ""}.</li>
         <li>If the operator enables the optional AI drafting tool, question topics typed by administrators are sent to the configured AI provider. No player data is sent.</li>
       </ul>
       <h2>Retention and deletion</h2>

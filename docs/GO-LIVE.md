@@ -91,6 +91,23 @@ In Supabase: **Authentication → URL Configuration**
 - Add your name and a contact method to the About, Privacy and Terms pages.
 - Optional: Google sign-in (see the Authentication section of the README).
 
+## Run ads (Google AdSense)
+
+1. Sign up at adsense.google.com with your Google account and add your site `playpricele.com`.
+2. Copy your **publisher ID** (`ca-pub-` followed by 16 digits). It is not secret.
+3. Vercel → **Settings → Environment Variables** → add `AD_PUBLISHER_ID` = your publisher ID, then
+   redeploy. This publishes `/ads.txt`, adds Google's verification tag and turns on the advertising
+   section of the privacy policy. In AdSense, choose the **meta tag** method and click **Verify**,
+   then **Request review**. Review can take a few days to a few weeks.
+4. AdSense → **Privacy & messaging** → create the **European regulations** message (Google's consent
+   banner for EU/UK visitors). Leave **Auto ads off**.
+5. After approval: AdSense → **Ads → By ad unit → Display ads**, make one *responsive* unit and copy
+   its **data-ad-slot** number. In Vercel add `AD_SLOT_ID` = that number and
+   `ADVERTISING_ENABLED` = `true`, then redeploy. Ads appear on the home, results, archive and
+   leaderboard pages, never on the question screen.
+
+To turn ads off, set `ADVERTISING_ENABLED` to `false` and redeploy.
+
 ## If something goes wrong
 
 | What you see | Fix |

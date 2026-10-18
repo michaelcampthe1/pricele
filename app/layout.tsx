@@ -4,6 +4,7 @@ import "./globals.css";
 import { SiteHeader } from "@/components/layout/site-header";
 import { SiteFooter } from "@/components/layout/site-footer";
 import { appUrl } from "@/lib/env";
+import { adsenseClient } from "@/lib/ads";
 
 const display = localFont({
   src: "./fonts/bricolage.woff2",
@@ -31,6 +32,8 @@ export const metadata: Metadata = {
     description: "Three questions. Three difficulty levels. One new challenge every day.",
   },
   twitter: { card: "summary_large_image" },
+  // Lets Google AdSense verify site ownership once a publisher id is configured.
+  ...(adsenseClient() ? { other: { "google-adsense-account": adsenseClient()! } } : {}),
 };
 
 export const viewport: Viewport = {
