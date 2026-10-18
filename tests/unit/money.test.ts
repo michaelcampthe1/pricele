@@ -1,5 +1,5 @@
 import { describe, expect, it } from "vitest";
-import { amountInWords, formatUsd, formatUsdCompact, parseUsdInput } from "@/lib/money";
+import { amountInWords, formatTypedAmount, formatUsd, formatUsdCompact, parseUsdInput } from "@/lib/money";
 
 describe("parseUsdInput", () => {
   it.each([
@@ -64,5 +64,28 @@ describe("formatting", () => {
   it("spells out large amounts", () => {
     expect(amountInWords("2500000000")).toBe("2.5 billion");
     expect(amountInWords("999")).toBe("");
+  });
+});
+
+describe("formatTypedAmount", () => {
+  it.each([
+    ["", ""],
+    ["5", "5"],
+    ["2500", "2,500"],
+    ["1234567", "1,234,567"],
+    ["1,2345", "12,345"],
+    ["0005", "5"],
+    [".", "0."],
+    ["1234.5", "1,234.5"],
+    ["1234.567", "1,234.56"],
+    ["12.3.4", "12.34"],
+    ["$2,500abc", "2,500"],
+    ["450300000", "450,300,000"],
+  ])("%s → %s", (input, out) => {
+    expect(formatTypedAmount(input)).toBe(out);
+  });
+
+  it("produces values the parser accepts", () => {
+    expect(parseUsdInput(formatTypedAmount("9700000000"))).toEqual({ ok: true, value: "9700000000.00" });
   });
 });

@@ -33,9 +33,14 @@ test("guest plays today's game end to end, then claims it into a new account", a
   await expect(page.getByText("Question 1 of 3")).toBeVisible();
 
   // Client validation
-  await page.getByLabel("Your guess").fill("-5");
+  await page.getByLabel("Your guess").fill("0");
   await page.getByRole("button", { name: "Submit guess" }).click();
   await expect(page.getByText("Guesses must be greater than $0.")).toBeVisible();
+
+  // Commas are inserted while typing
+  await page.getByLabel("Your guess").fill("");
+  await page.getByLabel("Your guess").pressSequentially("1234567");
+  await expect(page.getByLabel("Your guess")).toHaveValue("1,234,567");
 
   await answerCurrent(page, answers[0]); // exact
   await expect(page.getByText("Spot on.")).toBeVisible();
@@ -48,6 +53,7 @@ test("guest plays today's game end to end, then claims it into a new account", a
 
   await expect(page).toHaveURL(/\/results$/);
   await expect(page.getByText("1,894")).toBeVisible();
+  await expect(page.getByText("You ranked #1 of 1 player today")).toBeVisible();
 
   // 8–9. Refresh: progress persists (server-side guest session)
   await page.reload();
@@ -71,7 +77,7 @@ test("guest plays today's game end to end, then claims it into a new account", a
   await page.getByRole("button", { name: "Save to my account" }).click();
   await expect(page).toHaveURL(/\/results/);
   await expect(page.getByText("1,894")).toBeVisible();
-  await expect(page.getByText(/Rank 1 of 1 today/)).toBeVisible();
+  await expect(page.getByText("You ranked #1 of 1 player today")).toBeVisible();
   await expect(page.getByText("1-day streak")).toBeVisible();
 
   // 12. Profile statistics are real

@@ -116,3 +116,24 @@ export function amountInWords(value: string): string {
   }
   return "";
 }
+
+/**
+ * Live-formats what a player types into the guess box: keeps digits and one decimal point
+ * (max two decimals), drops leading zeros and inserts thousands separators.
+ * "1234567.891" → "1,234,567.89", "0005" → "5", "." → "0.".
+ */
+export function formatTypedAmount(raw: string): string {
+  let s = raw.replace(/[^0-9.]/g, "");
+  const dot = s.indexOf(".");
+  let int = dot === -1 ? s : s.slice(0, dot);
+  const frac = dot === -1 ? null : s.slice(dot + 1).replace(/\./g, "").slice(0, 2);
+  int = int.replace(/^0+(?=\d)/, "");
+  if (int === "" && frac !== null) int = "0";
+  s = int.replace(/\B(?=(\d{3})+(?!\d))/g, ",");
+  return frac === null ? s : `${s}.${frac}`;
+}
+
+/** Number of digits (and decimal points) before position `pos` in `s`, used to keep the caret steady. */
+export function significantCharsBefore(s: string, pos: number): number {
+  return s.slice(0, pos).replace(/[^0-9.]/g, "").length;
+}

@@ -1,9 +1,9 @@
 "use client";
 
-import { forwardRef } from "react";
-import { amountInWords, parseUsdInput } from "@/lib/money";
+import { forwardRef, useCallback, useLayoutEffect, useRef } from "react";
+import { amountInWords, formatTypedAmount, parseUsdInput, significantCharsBefore } from "@/lib/money";
 
-/** USD guess input. Text input with a decimal keypad so shorthand like "2.5 billion" works. */
+/** USD guess input with a number keypad. Commas are added automatically as the player types. */
 export const PriceInput = forwardRef<
   HTMLInputElement,
   {
@@ -18,6 +18,30 @@ export const PriceInput = forwardRef<
   const parsed = value.trim() ? parseUsdInput(value) : null;
   const words = parsed?.ok ? amountInWords(parsed.value) : "";
   const hintId = `${id}-hint`;
+  const inner = useRef<HTMLInputElement | null>(null);
+  const caret = useRef<number | null>(null);
+  const setRefs = useCallback(
+    (el: HTMLInputElement | null) => {
+      inner.current = el;
+      if (typeof ref === "function") ref(el);
+      else if (ref) ref.current = el;
+    },
+    [ref],
+  );
+  // After reformatting, put the caret back after the same number of digits it followed before.
+  useLayoutEffect(() => {
+    const el = inner.current;
+    const want = caret.current;
+    if (!el || want === null || document.activeElement !== el) return;
+    caret.current = null;
+    let pos = 0;
+    let seen = 0;
+    while (pos < value.length && seen < want) {
+      if (/[0-9.]/.test(value[pos])) seen++;
+      pos++;
+    }
+    el.setSelectionRange(pos, pos);
+  }, [value]);
   const errorId = `${id}-error`;
   return (
     <div>
@@ -33,7 +57,7 @@ export const PriceInput = forwardRef<
           $
         </span>
         <input
-          ref={ref}
+          ref={setRefs}
           id={id}
           name="guess"
           type="text"
@@ -48,7 +72,11 @@ export const PriceInput = forwardRef<
           disabled={disabled}
           aria-invalid={error ? true : undefined}
           aria-describedby={error ? errorId : hintId}
-          onChange={(e) => onChange(e.target.value)}
+          onChange={(e) => {
+            const raw = e.target.value;
+            caret.current = significantCharsBefore(raw, e.target.selectionStart ?? raw.length);
+            onChange(formatTypedAmount(raw));
+          }}
           className="tnum min-w-0 flex-1 bg-transparent py-3.5 pl-1.5 pr-4 font-display text-2xl font-semibold text-ink outline-none placeholder:text-line-strong focus-visible:outline-none"
         />
         <span aria-hidden className="pr-4 text-sm font-medium text-muted">
@@ -61,7 +89,7 @@ export const PriceInput = forwardRef<
         </p>
       ) : (
         <p id={hintId} className="mt-2 min-h-5 text-sm text-muted">
-          {words ? `≈ ${words} dollars` : "Shorthand works too: 2.5k, 40 million, 1.2 billion."}
+          {words ? `≈ ${words} dollars` : "Type the full amount — commas are added for you."}
         </p>
       )}
     </div>

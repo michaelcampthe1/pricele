@@ -125,6 +125,19 @@ export async function getUserDailyRank(userId: string, date: string): Promise<{ 
   return row.r ? { rank: Number(row.r.rank), participants: Number(row.r.participants) } : null;
 }
 
+export type DailyStanding = { rank: number; participants: number; beaten: number };
+
+/** Where this player (account or guest) finished today among everyone who completed the game. */
+export async function getDailyStanding(player: PlayerRef, date: string): Promise<DailyStanding | null> {
+  const { user, guest } = idOf(player);
+  if (!user && !guest) return null;
+  const [row] = await sql()`
+    select pricele.player_daily_standing(${user}::uuid, ${guest}::bytea, ${date}::date) as r`;
+  return row.r
+    ? { rank: Number(row.r.rank), participants: Number(row.r.participants), beaten: Number(row.r.beaten) }
+    : null;
+}
+
 export async function getStreaks(userId: string): Promise<{ current: number; best: number }> {
   const [row] = await sql()`select * from pricele.user_streaks(${userId}::uuid)`;
   return { current: row.current_streak, best: row.best_streak };

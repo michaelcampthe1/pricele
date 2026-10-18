@@ -4,7 +4,7 @@ import Link from "next/link";
 import { redirect } from "next/navigation";
 import { Flame, Trophy } from "lucide-react";
 import { getViewer } from "@/lib/auth/player";
-import { getGameState, getStreaks, getUserDailyRank, guestSummary } from "@/lib/game/service";
+import { getDailyStanding, getGameState, getStreaks, guestSummary } from "@/lib/game/service";
 import { formatGameDate } from "@/lib/dates";
 import { formatUsd } from "@/lib/money";
 import { formatPercentageError } from "@/lib/scoring";
@@ -54,7 +54,7 @@ export default async function ResultsPage() {
   const userId = viewer.player.userId;
   const [streaks, rank, claimable] = await Promise.all([
     userId ? getStreaks(userId).catch(() => null) : null,
-    userId ? getUserDailyRank(userId, state.gameDate).catch(() => null) : null,
+    getDailyStanding(viewer.player, state.gameDate).catch(() => null),
     !userId && viewer.player.guestHash ? guestSummary(viewer.player.guestHash).catch(() => null) : null,
   ]);
 
@@ -90,14 +90,25 @@ export default async function ResultsPage() {
               {streaks.current}-day streak
             </span>
           )}
-          {rank && (
-            <span className="inline-flex items-center gap-1.5">
-              <Trophy aria-hidden className="h-4 w-4 text-green" />
-              Rank {rank.rank.toLocaleString("en-US")} of {rank.participants.toLocaleString("en-US")} today
-            </span>
-          )}
           <span>Average error: {formatPercentageError(avgError.toFixed(6))}</span>
         </div>
+        {rank && (
+          <div className="mt-5 flex items-center gap-3 rounded-[12px] bg-green-wash px-4 py-3">
+            <Trophy aria-hidden className="h-6 w-6 shrink-0 text-green" />
+            <div>
+              <p className="font-display text-lg font-semibold text-ink">
+                You ranked #{rank.rank.toLocaleString("en-US")} of {rank.participants.toLocaleString("en-US")}{" "}
+                {rank.participants === 1 ? "player" : "players"} today
+              </p>
+              <p className="text-sm text-ink-soft">
+                {rank.participants === 1
+                  ? "You're the first to finish today. Check back later to see how you compare."
+                  : `You scored higher than ${Math.round((rank.beaten / (rank.participants - 1)) * 100)}% of other players.`}
+                {!userId && " Create an account to appear on the leaderboard."}
+              </p>
+            </div>
+          </div>
+        )}
         <p className="mt-1 text-xs text-muted">Average error is the mean of |guess − answer| ÷ answer across today&apos;s three questions.</p>
 
         <div className="mt-6 grid gap-3 sm:grid-cols-2">
