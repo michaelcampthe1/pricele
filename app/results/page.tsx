@@ -107,12 +107,12 @@ export default async function ResultsPage() {
               <p className="font-display text-lg font-semibold text-ink">
                 {standingHeadline(rank)}
               </p>
-              <p className="text-sm text-ink-soft">
-                {rank.participants === 1
-                  ? "You're the first to finish today. Check back later to see how you compare."
-                  : `You scored higher than ${Math.round((rank.beaten / (rank.participants - 1)) * 100)}% of other players.`}
-                {!userId && " Create an account to appear on the leaderboard."}
-              </p>
+              {(rank.participants === 1 || !userId) && (
+                <p className="text-sm text-ink-soft">
+                  {rank.participants === 1 && "Check back later to see how you compare. "}
+                  {!userId && "Create an account to appear on the leaderboard."}
+                </p>
+              )}
             </div>
           </div>
         )}
