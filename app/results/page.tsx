@@ -22,6 +22,14 @@ import { logger } from "@/lib/logger";
 
 export const metadata: Metadata = { title: "Your results", robots: { index: false } };
 
+/** Percentile headline, e.g. "Top 15% today". Never shows the raw player count. */
+function standingHeadline(r: { rank: number; participants: number }): string {
+  if (r.participants === 1) return "First to finish today";
+  if (r.rank === 1) return "Top score today";
+  const pct = Math.min(100, Math.max(1, Math.ceil((r.rank / r.participants) * 100)));
+  return `Top ${pct}% today`;
+}
+
 export default async function ResultsPage() {
   let viewer, state;
   try {
@@ -97,8 +105,7 @@ export default async function ResultsPage() {
             <Trophy aria-hidden className="h-6 w-6 shrink-0 text-green" />
             <div>
               <p className="font-display text-lg font-semibold text-ink">
-                You ranked #{rank.rank.toLocaleString("en-US")} of {rank.participants.toLocaleString("en-US")}{" "}
-                {rank.participants === 1 ? "player" : "players"} today
+                {standingHeadline(rank)}
               </p>
               <p className="text-sm text-ink-soft">
                 {rank.participants === 1
