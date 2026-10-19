@@ -8,10 +8,11 @@ import { formatPercentageError } from "@/lib/scoring";
 import { formatGameDate } from "@/lib/dates";
 import { LogScale } from "@/components/game/log-scale";
 import { CountUp } from "@/components/game/count-up";
+import { Confetti } from "@/components/game/confetti";
 import { reportQuestionAction } from "@/app/play/actions";
 
 export function feedbackFor(score: number): string {
-  if (score === 1000) return "Spot on.";
+  if (score === 1000) return "Nailed it.";
   if (score >= 850) return "Extremely close.";
   if (score >= 700) return "Close call.";
   if (score >= 550) return "Same ballpark.";
@@ -33,8 +34,24 @@ export function Reveal({
 }) {
   const r = attempt.reveal;
   const corrected = r.corrections.length > 0;
+  const perfect = attempt.score === 1000;
   return (
     <div className={`space-y-6 ${animate ? "reveal-in" : ""}`}>
+      {perfect && animate && <Confetti />}
+      {perfect && (
+        <div
+          role="status"
+          className={`flex items-center gap-3 rounded-[12px] border border-[#e3b23c]/50 bg-[#fdf3d6] px-4 py-3 ${animate ? "perfect-pop" : ""}`}
+        >
+          <span aria-hidden className="text-3xl leading-none">🎯</span>
+          <div>
+            <p className="font-display text-xl font-bold text-[#7a5410]">Perfect guess!</p>
+            <p className="text-sm text-[#7a5410]/85">
+              You hit the exact price{practice ? "" : " for the full 1,000 points"}. Very few players ever do.
+            </p>
+          </div>
+        </div>
+      )}
       <div className="flex flex-wrap items-end justify-between gap-4">
         <div>
           <p className="text-sm text-muted">{practice ? "Practice score" : "Points earned"}</p>

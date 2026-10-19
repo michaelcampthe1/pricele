@@ -43,7 +43,7 @@ test("guest plays today's game end to end, then claims it into a new account", a
   await expect(page.getByLabel("Your guess")).toHaveValue("1,234,567");
 
   await answerCurrent(page, answers[0]); // exact
-  await expect(page.getByText("Spot on.")).toBeVisible();
+  await expect(page.getByText("Perfect guess!", { exact: true })).toBeVisible();
   await expect(page.locator("p", { hasText: "Points earned" }).locator("..")).toContainText("1,000");
   await page.getByRole("button", { name: "Next question" }).click();
   await answerCurrent(page, String(Number(answers[1]) * 2)); // twice → 591

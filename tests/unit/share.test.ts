@@ -17,7 +17,8 @@ describe("share text", () => {
   });
 
   it("renders a proportional bar", () => {
-    expect(scoreBar(1000)).toBe("🟩🟩🟩🟩🟩");
+    expect(scoreBar(1000)).toBe("🟩🟩🟩🟩🟩 🎯");
+    expect(scoreBar(999)).toBe("🟩🟩🟩🟩🟩");
     expect(scoreBar(0)).toBe("⬜⬜⬜⬜⬜");
     expect(scoreBar(591)).toBe("🟩🟩🟩⬜⬜");
   });

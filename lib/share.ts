@@ -13,6 +13,7 @@ const fmt = (n: number) => new Intl.NumberFormat("en-US").format(n);
 
 /** Bar of five blocks proportional to a 0–1000 score. Spoiler-free: never includes answers. */
 export function scoreBar(score: number): string {
+  if (score === 1000) return "🟩🟩🟩🟩🟩 🎯";
   const filled = Math.max(0, Math.min(5, Math.round(score / 200)));
   return "🟩".repeat(filled) + "⬜".repeat(5 - filled);
 }

@@ -57,7 +57,7 @@ export default async function ResultsPage() {
   const total = qs.reduce((s, q) => s + q.attempt.score, 0);
   // Average absolute percentage error across the three questions.
   const avgError = qs.reduce((s, q) => s + Number(q.attempt.percentageError), 0) / 3;
-  const medianScoreQ = [...qs].sort((a, b) => b.attempt.score - a.attempt.score)[0];
+  const perfectCount = qs.filter((q) => q.attempt.score === 1000).length;
 
   const userId = viewer.player.userId;
   const [streaks, rank, claimable] = await Promise.all([
@@ -151,7 +151,12 @@ export default async function ResultsPage() {
             <li key={q.id} className="rounded-[12px] border border-line bg-surface p-4 sm:p-5">
               <div className="flex items-start justify-between gap-4">
                 <div className="min-w-0">
-                  <DifficultyLabel difficulty={q.difficulty} />
+                  <div className="flex flex-wrap items-center gap-2">
+                    <DifficultyLabel difficulty={q.difficulty} />
+                    {q.attempt.score === 1000 && (
+                      <span className="rounded-full bg-[#fdf3d6] px-2 py-0.5 text-xs font-semibold text-[#7a5410]">🎯 Perfect</span>
+                    )}
+                  </div>
                   <p className="mt-1 font-medium text-ink">{q.prompt}</p>
                 </div>
                 <p className="tnum shrink-0 text-right font-display text-2xl font-semibold text-green-strong">
@@ -184,8 +189,10 @@ export default async function ResultsPage() {
             </li>
           ))}
         </ol>
-        {medianScoreQ.attempt.score === 1000 && (
-          <p className="mt-4 text-sm text-muted">A perfect guess — that&apos;s rare.</p>
+        {perfectCount > 0 && (
+          <p className="mt-4 text-sm font-medium text-[#7a5410]">
+            🎯 {perfectCount === 1 ? "A perfect guess today" : `${perfectCount} perfect guesses today`}. That&apos;s rare.
+          </p>
         )}
       </section>
 
